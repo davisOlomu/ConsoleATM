@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleATM", "ConsoleATM\ConsoleATM.csproj", "{837491C4-FF39-41DB-ADEE-8EE3984C9DDA}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleBankDataAccess", "..\ConsoleBankDataAccess\ConsoleBankDataAccess\ConsoleBankDataAccess.csproj", "{10780EB6-66AD-4EFD-B0AD-9E84F66B9B44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{837491C4-FF39-41DB-ADEE-8EE3984C9DDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{837491C4-FF39-41DB-ADEE-8EE3984C9DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{837491C4-FF39-41DB-ADEE-8EE3984C9DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{837491C4-FF39-41DB-ADEE-8EE3984C9DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10780EB6-66AD-4EFD-B0AD-9E84F66B9B44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10780EB6-66AD-4EFD-B0AD-9E84F66B9B44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10780EB6-66AD-4EFD-B0AD-9E84F66B9B44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10780EB6-66AD-4EFD-B0AD-9E84F66B9B44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2E1167AB-16BF-45CC-A06A-B8886D3CA357}
+	EndGlobalSection
+EndGlobal
