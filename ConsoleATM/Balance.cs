@@ -23,7 +23,7 @@ namespace ConsoleATM
             }
             catch (SqlException)
             {
-                throw;
+                Console.WriteLine("There is an error while establishing a connection with the SqlServer");
             }           
         }
     }
