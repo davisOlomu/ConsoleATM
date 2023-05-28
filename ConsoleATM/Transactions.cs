@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Threading;
+
 
 namespace ConsoleATM
 {
     class Transactions
     {
         public void SelectTransaction()
-        {             
+        {
             Console.WriteLine(Environment.NewLine);
             ConsoleKeyInfo myTransaction = Console.ReadKey();
 
@@ -21,14 +23,35 @@ namespace ConsoleATM
 
                 case ConsoleKey.NumPad3:
                     Console.Clear();
+                    Designs.CenterNewLine("Under Construction!");
+
+                    Thread.Sleep(3000);
+                    Console.Clear();
+
+                    Designs.CenterNewLine("Please take your card");
+                    Environment.Exit(0);
                     break;
 
                 case ConsoleKey.NumPad4:
                     Console.Clear();
+                    Designs.CenterNewLine("Under Construction!");
+
+                    Thread.Sleep(3000);
+                    Console.Clear();
+
+                    Designs.CenterNewLine("Please take your card");
+                    Environment.Exit(0);
                     break;
 
                 case ConsoleKey.NumPad5:
                     Console.Clear();
+                    Designs.CenterNewLine("Under Construction!");
+
+                    Thread.Sleep(3000);
+                    Console.Clear();
+
+                    Designs.CenterNewLine("Please take your card");
+                    Environment.Exit(0);
                     break;
 
                 case ConsoleKey.NumPad6:
@@ -38,6 +61,13 @@ namespace ConsoleATM
 
                 case ConsoleKey.NumPad7:
                     Console.Clear();
+                    Designs.CenterNewLine("Under Construction!");
+
+                    Thread.Sleep(3000);
+                    Console.Clear();
+
+                    Designs.CenterNewLine("Please take your card");
+                    Environment.Exit(0);
                     break;
 
                 case ConsoleKey.NumPad8:
