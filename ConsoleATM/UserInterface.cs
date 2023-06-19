@@ -63,11 +63,16 @@ namespace ConsoleATM
             Designs.CenterNewLine("A notification will be sent");
 
             Designs.CenterNewLine("to you shortly");
-            Console.WriteLine($"{Designs.AlignText(70, "1> YES")}");
+           
+        }
 
+        public static void NewTransactionInterface()
+        {
+            Console.Clear();
             Designs.CenterNewLine("Do you want to perform");
             Designs.CenterNewLine("another transaction?");
 
+            Console.WriteLine($"{Designs.AlignText(70, "1> YES\n")}");
             Console.WriteLine($"{Designs.AlignText(70, "2> NO")}");
 
             ConsoleKeyInfo exitApp;
@@ -96,7 +101,7 @@ namespace ConsoleATM
                 Environment.Exit(0);
             }
         }
-
+                  
         public static void BeneficiaryBankInterface()
         {
             Designs.CenterNewLine("SELECT BENEFICIARY BANK");

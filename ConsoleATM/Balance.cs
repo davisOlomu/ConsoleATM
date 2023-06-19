@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Data.SqlClient;
 using static ConsoleATM.Login;
+using System.Threading;
 
 namespace ConsoleATM
 {
@@ -18,7 +19,24 @@ namespace ConsoleATM
                     Console.WriteLine($"Current Balance\t\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}");
                     Console.WriteLine($"Available Balance\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n\n");
 
-                    UserInterface.TransactionCompletedInterface();
+
+                    Console.WriteLine($"{Designs.AlignText(70, "0> Exit")}");
+                    ConsoleKeyInfo userInput = Console.ReadKey();
+
+                    if (userInput.Key == ConsoleKey.NumPad0)
+                    {
+                        UserInterface.NewTransactionInterface();
+                    }
+                    else
+                    {
+                        Console.Clear();
+                        Designs.CenterNewLine("Wrong Input!");
+                        Thread.Sleep(3000);
+
+                        Console.Clear();
+                        Designs.CenterNewLine("Please take your card");
+                        Environment.Exit(0);
+                    }                    
                 }
             }
             catch (SqlException)

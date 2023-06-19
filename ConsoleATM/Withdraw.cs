@@ -43,22 +43,18 @@ namespace ConsoleATM
                     transactionAmount = 500;
                     UserInterface.TransactionInProgressInterface();
                     break;
-
                 case ConsoleKey.NumPad2:
                     transactionAmount = 1000;
                     UserInterface.TransactionInProgressInterface();
                     break;
-
                 case ConsoleKey.NumPad3:
                     transactionAmount = 2000;
                     UserInterface.TransactionInProgressInterface();
                     break;
-
                 case ConsoleKey.NumPad4:
                     transactionAmount = 5000;
                     UserInterface.TransactionInProgressInterface();
                     break;
-
                 case ConsoleKey.NumPad5:
                     transactionAmount = 10000;
                     UserInterface.TransactionInProgressInterface();
@@ -133,14 +129,7 @@ namespace ConsoleATM
         {
             var withdraw = new TransactionModel { TransactionDescription = "ATM Withdrawal", TransactionAmount = transactionAmount };
 
-            if (transactionAmount > user.Balance)
-            {
-                Designs.CenterNewLine("Insufficient funds!\n");
-
-                withdraw.TransactionStatus = TransactionStatus.Unsucessfull;
-                withdraw.TransactionType = TransactionType.Debit;
-            }
-            else
+            if (transactionAmount <= user.Balance)
             {
                 user.Balance -= transactionAmount;
                 dbAccess.UpdateBalance(user, user.Balance);
@@ -156,6 +145,21 @@ namespace ConsoleATM
 
                 Console.Clear();
                 UserInterface.TransactionCompletedInterface();
+                UserInterface.NewTransactionInterface();
+            }
+            else
+            {
+                Console.Clear();
+                Designs.CenterNewLine("Insufficient funds!\n");
+
+                withdraw.TransactionStatus = TransactionStatus.Unsucessfull;
+                withdraw.TransactionType = TransactionType.Debit;
+
+                Thread.Sleep(3000);
+                Console.Clear();
+
+                UserInterface.WithdrawalAmountInterface();
+                WithdrawalAmount();
             }
         }
     }

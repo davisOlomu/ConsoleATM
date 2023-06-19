@@ -6,8 +6,10 @@ namespace ConsoleATM
 {
     partial class Login
     {
-        public static DataAccess dbAccess = new DataAccess();
+        // Create an instance of the user 
+        // using the pin property
         public static AccountModel user = new AccountModel();
+        public static DataAccess dbAccess = new DataAccess();
 
         public static void GetPin()
         {
@@ -36,7 +38,7 @@ namespace ConsoleATM
             }
             catch (SqlException)
             {
-                Console.WriteLine("");
+                Console.WriteLine("There is an error while establishing a connection with the SqlServer");
             }        
         }
     }
