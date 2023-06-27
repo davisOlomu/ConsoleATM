@@ -11,14 +11,12 @@ namespace ConsoleATM
             int spaces = 50 + (message.Length / 2);
             Console.WriteLine(message.PadLeft(spaces));      
         }
-
         // Center without carriage return
         public static void CenterSameLine(string message)
         {
             int spaces = 50 + (message.Length / 2);
             Console.Write(message.PadLeft(spaces));
         }
-
         // Align text
         public static string AlignText(int SpacesToAdd, string Msg, string Alignment = "R")
         {
@@ -31,7 +29,6 @@ namespace ConsoleATM
             }
             return Msg;
         }
-
         // Fancy lines
         public static void DrawLine()
         {

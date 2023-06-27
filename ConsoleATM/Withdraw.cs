@@ -14,7 +14,6 @@ namespace ConsoleATM
         {
             Console.Clear();
             UserInterface.AccountTypeInterface();
-
             ConsoleKeyInfo accountType = Console.ReadKey();
             Console.Clear();
 
@@ -24,7 +23,6 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 Designs.CenterNewLine("Please take your card");
-
                 Environment.Exit(0);
             }
             WithdrawalAmount();
@@ -59,30 +57,25 @@ namespace ConsoleATM
                     transactionAmount = 10000;
                     UserInterface.TransactionInProgressInterface();
                     break;
-
                 case ConsoleKey.NumPad6:
                     transactionAmount = 15000;
                     UserInterface.TransactionInProgressInterface();
                     break;
-
                 case ConsoleKey.NumPad7:
                     transactionAmount = 20000;
                     UserInterface.TransactionInProgressInterface();
                     break;
-
                 case ConsoleKey.NumPad8:
                     Console.Clear();
 
                     // Enter a custom amount 
                     Console.Write("\n\nEnter in multiples of 1000\n\n\t\t\t  N: ");
-
                     decimal amount;
 
                     if (decimal.TryParse(Console.ReadLine(), out amount))
                     {
                         Console.Clear();
                         transactionAmount = amount;
-
                         UserInterface.TransactionInProgressInterface();
                     }
                     else
@@ -96,7 +89,6 @@ namespace ConsoleATM
                             {
                                 Console.Clear();
                                 transactionAmount = amount;
-
                                 UserInterface.TransactionInProgressInterface();
                             }
                         }
@@ -106,18 +98,14 @@ namespace ConsoleATM
                 case ConsoleKey.NumPad9:
                     Console.Clear();
                     Designs.CenterNewLine("Please take your card ");
-
                     Environment.Exit(0);
                     break;
-
                 default:
                     Console.Clear();
                     Designs.CenterNewLine("Wrong Input!");
                     Thread.Sleep(2000);
-
                     Console.Clear();
                     Designs.CenterNewLine("Please take your card ");
-
                     Environment.Exit(0);
                     break;
             }
@@ -133,16 +121,12 @@ namespace ConsoleATM
             {
                 user.Balance -= transactionAmount;
                 dbAccess.UpdateBalance(user, user.Balance);
-
                 withdraw.TransactionStatus = TransactionStatus.Sucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
-
                 dbAccess.CreateTransaction(withdraw, user.UserName);
                 UserInterface.TransactionInProgressInterface();
-
                 Designs.CenterNewLine("Please take your cash");
                 Thread.Sleep(6000);
-
                 Console.Clear();
                 UserInterface.TransactionCompletedInterface();
                 UserInterface.NewTransactionInterface();
@@ -151,13 +135,10 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 Designs.CenterNewLine("Insufficient funds!\n");
-
                 withdraw.TransactionStatus = TransactionStatus.Unsucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
-
                 Thread.Sleep(3000);
                 Console.Clear();
-
                 UserInterface.WithdrawalAmountInterface();
                 WithdrawalAmount();
             }

@@ -8,11 +8,9 @@ namespace ConsoleATM
     {
         public IncorrectPinException() { }
         public IncorrectPinException(string message) : base(message) { }
-
         public IncorrectPinException(string message, Exception inner) : base(message, inner) { }
         protected IncorrectPinException(
           System.Runtime.Serialization.SerializationInfo info,
           System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
-
     }
 }
