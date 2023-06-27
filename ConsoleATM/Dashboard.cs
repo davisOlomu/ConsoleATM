@@ -10,7 +10,6 @@ namespace ConsoleATM
         {
             Console.Title = "Console ATM";
             Console.SetWindowSize(100, 20);
-
             UserInterface.WelcomeInterface();
 
             // Check for a correct Pin
@@ -27,7 +26,6 @@ namespace ConsoleATM
                 {
                     Console.Clear();
                     Designs.CenterNewLine(e.Message);
-
                     Thread.Sleep(3000);
                     Console.Clear();
                 }
@@ -35,7 +33,6 @@ namespace ConsoleATM
                 {
                     Console.Clear();
                     Designs.CenterNewLine(e.Message);
-
                     Thread.Sleep(3000);
                     Console.Clear();
                 }
