@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Threading;
 
-
 namespace ConsoleATM
 {
     class UserInterface
     {
-        public static void WelcomeInterface()
+        public static void Welcome()
         {
             Designs.CenterNewLine("Welcome...");
             Designs.CenterNewLine("Please insert your card.");
             Thread.Sleep(6500);
             Console.Clear();
         }
-        public static void TransactionInterface()
+        public static void Transactions()
         {
             Console.Clear();
             Designs.CenterNewLine("CHOOSE A TRANSACTION");
@@ -23,7 +22,7 @@ namespace ConsoleATM
             Console.WriteLine($"{Designs.AlignText(25, "3> Other Services\t\t\t7> Payment")}");
             Console.WriteLine($"{Designs.AlignText(25, "4> Online Banking\t\t\t8> Cancel")}");
         }
-        public static void AccountTypeInterface()
+        public static void AccountType()
         {
             Designs.CenterNewLine("SELECT YOUR ACCOUNT TYPE");
             Designs.CenterNewLine("Press cancel to terminate transaction\n\n");
@@ -31,14 +30,14 @@ namespace ConsoleATM
             Console.WriteLine($"{Designs.AlignText(70, "2> Currents")}");
             Console.WriteLine($"{Designs.AlignText(70, "3> Cancel")}");
         }
-        public static void TransactionInProgressInterface()
+        public static void TransactionProgress()
         {
             Designs.CenterNewLine("TRANSACTION IN PROGRESS\n");
             Designs.CenterNewLine("Please Wait");
             Thread.Sleep(7000);
             Console.Clear();
         }
-        public static void WithdrawalAmountInterface()
+        public static void WithdrawalAmount()
         {
             Designs.CenterNewLine("SELECT AMOUNT");
             Designs.CenterNewLine("Press Cancel To Terminate Transaction\n\n");
@@ -48,31 +47,30 @@ namespace ConsoleATM
             Console.WriteLine($"{Designs.AlignText(28, "4> N5000\t\t\t\t8> OTHER ")}");
             Console.WriteLine($"{Designs.AlignText(28, "9> Cancel")}");
         }
-        public static void TransactionCompletedInterface()
+        public static void TransactionCompleted()
         {
             Designs.CenterNewLine("TRANSACTION COMPLETED\n\n");
             Designs.CenterNewLine("A notification will be sent");
             Designs.CenterNewLine("to you shortly");
 
         }
-        public static void NewTransactionInterface()
+        public static void NewTransaction()
         {
             Console.Clear();
             Designs.CenterNewLine("Do you want to perform");
             Designs.CenterNewLine("another transaction?");
             Console.WriteLine($"{Designs.AlignText(70, "1> YES\n")}");
             Console.WriteLine($"{Designs.AlignText(70, "2> NO")}");
-            ConsoleKeyInfo exitApp;
-            exitApp = Console.ReadKey();
+            ConsoleKeyInfo option = Console.ReadKey();
 
-            if (exitApp.Key == ConsoleKey.NumPad1)
+            if (option.Key == ConsoleKey.NumPad1)
             {
                 Console.Clear();
-                Login.GetPin();
+                Login.VerifyPin();
                 Transactions transactions = new Transactions();
                 transactions.SelectTransaction();
             }
-            else if (exitApp.Key == ConsoleKey.NumPad2)
+            else if (option.Key == ConsoleKey.NumPad2)
             {
                 Console.Clear();
                 Designs.CenterNewLine("Please take your card");
@@ -85,7 +83,7 @@ namespace ConsoleATM
                 Environment.Exit(0);
             }
         }
-        public static void BeneficiaryBankInterface()
+        public static void BeneficiaryBank()
         {
             Designs.CenterNewLine("SELECT BENEFICIARY BANK");
             Designs.CenterNewLine("Press cancel to terminate transaction\n");
@@ -94,13 +92,13 @@ namespace ConsoleATM
             Console.WriteLine("5> Eco Bank\t\t\t\t\t4> (N-S)\n");
             Console.WriteLine("7> Heritage Bank\t\t\t\t6> (T-Z)");
         }
-        public static void BeneficiaryAccountNumberInterface()
+        public static void BeneficiaryAccountNumber()
         {
             Designs.CenterNewLine("ENTER BENEFICIARY ACCOUNT NUMBER");
             Designs.CenterNewLine("Please press cancel to terminate transaction.\n\n");
             Console.WriteLine($"{Designs.AlignText(70, "> Enter")}");
         }
-        public static void TransferAmountInterface()
+        public static void TransferAmount()
         {
             Designs.CenterNewLine("ENTER THE AMOUNT TO TRANSFER");
             Designs.CenterNewLine("Please press cancel to terminate transaction.\n\n");

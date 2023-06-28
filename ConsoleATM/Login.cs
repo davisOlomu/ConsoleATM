@@ -6,15 +6,16 @@ namespace ConsoleATM
 {
     partial class Login
     {
-        // Create an instance of the user 
-        // using the pin property
+        // wrong code approach
+        // exposing static data
+        // looking for a solution
         public static AccountModel user = new AccountModel();
         public static DataAccess dbAccess = new DataAccess();
-        public static void GetPin()
+        public static void VerifyPin()
         {
             Designs.CenterNewLine("ENTER FOUR DIGIT PIN-code.");
             Designs.CenterNewLine("Press <CANCEL> for cancellation");
-            Console.Write("\tPIN ****");
+            Console.Write("\tPIN **** ");
 
             if (!int.TryParse(Console.ReadLine(), out int pin))
             {
@@ -26,7 +27,7 @@ namespace ConsoleATM
             {
                 if (dbAccess.ReadFromCustomerWithPin(user))
                 {
-                    UserInterface.TransactionInterface();
+                    UserInterface.Transactions();
                 }
                 else
                 {

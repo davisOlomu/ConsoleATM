@@ -8,133 +8,133 @@ namespace ConsoleATM
 {
     class Transfer
     {
-        private static decimal _transferAmount;
-        private static ConsoleKeyInfo _selectBank;
+        private static decimal _amount;
+        private static ConsoleKeyInfo _bankOption;
         private static double _beneficiaryAccountNumber;
         private static string _beneficiaryBank;
-        private static string[] _listOfBanks;
+        private static string[] _allBanks;
 
         // Transfer funds
-        public static void BeneficiaryBank()
+        public static void GetBeneficiaryBank()
         {
             Console.Clear();
-            UserInterface.BeneficiaryBankInterface();
-            _selectBank = Console.ReadKey();
+            UserInterface.BeneficiaryBank();
+            _bankOption = Console.ReadKey();
             Console.Clear();
 
-            if (_selectBank.Key == ConsoleKey.NumPad1 || _selectBank.Key == ConsoleKey.NumPad3 || _selectBank.Key == ConsoleKey.NumPad5 || _selectBank.Key == ConsoleKey.NumPad7)
+            if (_bankOption.Key == ConsoleKey.NumPad1 || _bankOption.Key == ConsoleKey.NumPad3 || _bankOption.Key == ConsoleKey.NumPad5 || _bankOption.Key == ConsoleKey.NumPad7)
             {
-                _listOfBanks = new[] { "Access Bank", "Diamond Bank", "Eco Bank", "Heritage Bank" };
+                _allBanks = new[] { "Access Bank", "Diamond Bank", "Eco Bank", "Heritage Bank" };
 
-                if (_selectBank.Key == ConsoleKey.NumPad1)
-                    _beneficiaryBank = _listOfBanks[0];
+                if (_bankOption.Key == ConsoleKey.NumPad1)
+                    _beneficiaryBank = _allBanks[0];
 
-                else if (_selectBank.Key == ConsoleKey.NumPad2)
-                    _beneficiaryBank = _listOfBanks[1];
+                else if (_bankOption.Key == ConsoleKey.NumPad2)
+                    _beneficiaryBank = _allBanks[1];
 
-                else if (_selectBank.Key == ConsoleKey.NumPad3)
-                    _beneficiaryBank = _listOfBanks[2];
+                else if (_bankOption.Key == ConsoleKey.NumPad3)
+                    _beneficiaryBank = _allBanks[2];
 
-                else if (_selectBank.Key == ConsoleKey.NumPad4)
-                    _beneficiaryBank = _listOfBanks[3];
+                else if (_bankOption.Key == ConsoleKey.NumPad4)
+                    _beneficiaryBank = _allBanks[3];
 
-                BeneficiaryAccounNumber();
+                GetBeneficiaryAccounNumber();
 
-            }   
+            }
 
-            if (_selectBank.Key == ConsoleKey.NumPad2)
+            if (_bankOption.Key == ConsoleKey.NumPad2)
             {
-                List<string> displayBanks = new List<string> { "1> Fidelity Bank", "2> First Bank", "3> GT Bank\n\n" };
+                List<string> allBanks = new List<string> { "1> Fidelity Bank", "2> First Bank", "3> GT Bank\n\n" };
 
-                foreach (string bankName in displayBanks)
+                foreach (string bankName in allBanks)
                 {
                     Console.WriteLine(bankName);
                 }
-                 
-                _selectBank = Console.ReadKey();
+
+                _bankOption = Console.ReadKey();
                 Console.Clear();
 
-                if (_selectBank.Key == ConsoleKey.NumPad1 || _selectBank.Key == ConsoleKey.NumPad2 || _selectBank.Key == ConsoleKey.NumPad3)
+                if (_bankOption.Key == ConsoleKey.NumPad1 || _bankOption.Key == ConsoleKey.NumPad2 || _bankOption.Key == ConsoleKey.NumPad3)
                 {
-                    _listOfBanks = new[] { "Fidelity Bank", "First Bank", "GT Bank" };
+                    _allBanks = new[] { "Fidelity Bank", "First Bank", "GT Bank" };
 
-                    if (_selectBank.Key == ConsoleKey.NumPad1)
-                        _beneficiaryBank = _listOfBanks[0];
+                    if (_bankOption.Key == ConsoleKey.NumPad1)
+                        _beneficiaryBank = _allBanks[0];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad2)
-                        _beneficiaryBank = _listOfBanks[1];
+                    else if (_bankOption.Key == ConsoleKey.NumPad2)
+                        _beneficiaryBank = _allBanks[1];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad3)
-                        _beneficiaryBank = _listOfBanks[2];
+                    else if (_bankOption.Key == ConsoleKey.NumPad3)
+                        _beneficiaryBank = _allBanks[2];
 
-                    BeneficiaryAccounNumber();
+                    GetBeneficiaryAccounNumber();
                 }
             }
 
-            if (_selectBank.Key == ConsoleKey.NumPad4)
+            if (_bankOption.Key == ConsoleKey.NumPad4)
             {
-                List<string> displayBanks = new List<string> { "1. Polaris Bank", "2. Stanbic IBTC", "3. Standard Chartered", "4. Sterling Bank\n\n" };
+                List<string> allBanks = new List<string> { "1. Polaris Bank", "2. Stanbic IBTC", "3. Standard Chartered", "4. Sterling Bank\n\n" };
 
-                foreach (string bankName in displayBanks)
+                foreach (string bank in allBanks)
                 {
-                    Console.WriteLine(bankName);
+                    Console.WriteLine(bank);
                 }
-                _selectBank = Console.ReadKey();
+                _bankOption = Console.ReadKey();
                 Console.Clear();
 
-                if (_selectBank.Key == ConsoleKey.NumPad1 || _selectBank.Key == ConsoleKey.NumPad2 || _selectBank.Key == ConsoleKey.NumPad3 || _selectBank.Key == ConsoleKey.NumPad4)
+                if (_bankOption.Key == ConsoleKey.NumPad1 || _bankOption.Key == ConsoleKey.NumPad2 || _bankOption.Key == ConsoleKey.NumPad3 || _bankOption.Key == ConsoleKey.NumPad4)
                 {
-                    _listOfBanks = new[] { "Polaris Bank", "Stanbic IBTC", "Standard Chartered", "Sterling Bank" };
+                    _allBanks = new[] { "Polaris Bank", "Stanbic IBTC", "Standard Chartered", "Sterling Bank" };
 
-                    if (_selectBank.Key == ConsoleKey.NumPad1)
-                        _beneficiaryBank = _listOfBanks[0];
+                    if (_bankOption.Key == ConsoleKey.NumPad1)
+                        _beneficiaryBank = _allBanks[0];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad2)
-                        _beneficiaryBank = _listOfBanks[1];
+                    else if (_bankOption.Key == ConsoleKey.NumPad2)
+                        _beneficiaryBank = _allBanks[1];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad3)
-                        _beneficiaryBank = _listOfBanks[2];
-                    else if (_selectBank.Key == ConsoleKey.NumPad4)
-                        _beneficiaryBank = _listOfBanks[3];
+                    else if (_bankOption.Key == ConsoleKey.NumPad3)
+                        _beneficiaryBank = _allBanks[2];
+                    else if (_bankOption.Key == ConsoleKey.NumPad4)
+                        _beneficiaryBank = _allBanks[3];
 
-                    BeneficiaryAccounNumber();
+                    GetBeneficiaryAccounNumber();
                 }
-            }  
-            
-            if (_selectBank.Key == ConsoleKey.NumPad6)
-            {
-                List<string> displayBanks = new List<string> { "1. Taj Bank", "2. Unity Bank", "3. Union Bank", "4. Wema Bank", "5. GTB", "6. Zenith Bank\n\n" };
+            }
 
-                foreach (string bankName in displayBanks)
+            if (_bankOption.Key == ConsoleKey.NumPad6)
+            {
+                List<string> allBanks = new List<string> { "1. Taj Bank", "2. Unity Bank", "3. Union Bank", "4. Wema Bank", "5. GTB", "6. Zenith Bank\n\n" };
+
+                foreach (string bank in allBanks)
                 {
-                    Console.WriteLine(bankName);
-                }             
-                _selectBank = Console.ReadKey();
+                    Console.WriteLine(bank);
+                }
+                _bankOption = Console.ReadKey();
                 Console.Clear();
 
-                if (_selectBank.Key == ConsoleKey.NumPad1 || _selectBank.Key == ConsoleKey.NumPad2 || _selectBank.Key == ConsoleKey.NumPad3 || _selectBank.Key == ConsoleKey.NumPad4 || _selectBank.Key == ConsoleKey.NumPad5 || _selectBank.Key == ConsoleKey.NumPad6)
+                if (_bankOption.Key == ConsoleKey.NumPad1 || _bankOption.Key == ConsoleKey.NumPad2 || _bankOption.Key == ConsoleKey.NumPad3 || _bankOption.Key == ConsoleKey.NumPad4 || _bankOption.Key == ConsoleKey.NumPad5 || _bankOption.Key == ConsoleKey.NumPad6)
                 {
-                    _listOfBanks = new[] { "Taj Bank", " Unity Bank", "Union Bank", "Wema Bank", "GTB", "Zenith Bank" };
+                    _allBanks = new[] { "Taj Bank", " Unity Bank", "Union Bank", "Wema Bank", "GTB", "Zenith Bank" };
 
-                    if (_selectBank.Key == ConsoleKey.NumPad1)
-                        _beneficiaryBank = _listOfBanks[0];
+                    if (_bankOption.Key == ConsoleKey.NumPad1)
+                        _beneficiaryBank = _allBanks[0];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad2)
-                        _beneficiaryBank = _listOfBanks[1];
+                    else if (_bankOption.Key == ConsoleKey.NumPad2)
+                        _beneficiaryBank = _allBanks[1];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad3)
-                        _beneficiaryBank = _listOfBanks[2];
+                    else if (_bankOption.Key == ConsoleKey.NumPad3)
+                        _beneficiaryBank = _allBanks[2];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad4)
-                        _beneficiaryBank = _listOfBanks[3];
+                    else if (_bankOption.Key == ConsoleKey.NumPad4)
+                        _beneficiaryBank = _allBanks[3];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad5)
-                        _beneficiaryBank = _listOfBanks[4];
+                    else if (_bankOption.Key == ConsoleKey.NumPad5)
+                        _beneficiaryBank = _allBanks[4];
 
-                    else if (_selectBank.Key == ConsoleKey.NumPad6)
-                        _beneficiaryBank = _listOfBanks[5];
+                    else if (_bankOption.Key == ConsoleKey.NumPad6)
+                        _beneficiaryBank = _allBanks[5];
 
-                    BeneficiaryAccounNumber();
+                    GetBeneficiaryAccounNumber();
                 }
             }
             else
@@ -142,46 +142,44 @@ namespace ConsoleATM
                 Designs.CenterNewLine("Wrong Input!");
                 Thread.Sleep(3000);
                 Console.Clear();
-                UserInterface.BeneficiaryBankInterface();
+                UserInterface.BeneficiaryBank();
             }
         }
-
         // Beneficiary account number
-        public static void BeneficiaryAccounNumber()
+        public static void GetBeneficiaryAccounNumber()
         {
-            UserInterface.BeneficiaryAccountNumberInterface();
-            string accoutNumberEntered = Console.ReadLine();
+            UserInterface.BeneficiaryAccountNumber();
+            string accountNumber = Console.ReadLine();
             Console.Clear();
 
-            if (!double.TryParse(accoutNumberEntered, out _beneficiaryAccountNumber) || accoutNumberEntered.Length > 10 || accoutNumberEntered.Length > 10)
+            if (!double.TryParse(accountNumber, out _beneficiaryAccountNumber) || accountNumber.Length > 10 || accountNumber.Length > 10)
             {
                 Designs.CenterNewLine("Invalid account number entered\n");
                 Designs.CenterNewLine("Re-Enter Account Number");
                 Thread.Sleep(2500);
                 Console.Clear();
-                BeneficiaryAccounNumber();
+                GetBeneficiaryAccounNumber();
             }
             else
             {
                 Console.Clear();
-                UserInterface.AccountTypeInterface();
+                UserInterface.AccountType();
             }
-            BeneficiaryAccountType();
+            GetBeneficiaryAccountType();
         }
-
         // Beneficiary Account type
-        public static void BeneficiaryAccountType()
+        public static void GetBeneficiaryAccountType()
         {
-            ConsoleKeyInfo accountType = Console.ReadKey();
+            ConsoleKeyInfo option = Console.ReadKey();
             Console.Clear();
 
-            if (accountType.Key == ConsoleKey.NumPad1)
+            if (option.Key == ConsoleKey.NumPad1)
             {
-                UserInterface.TransferAmountInterface();
+                UserInterface.TransferAmount();
             }
-            else if (accountType.Key == ConsoleKey.NumPad2)
+            else if (option.Key == ConsoleKey.NumPad2)
             {
-                UserInterface.TransferAmountInterface();
+                UserInterface.TransferAmount();
             }
             else
             {
@@ -189,21 +187,21 @@ namespace ConsoleATM
                 Designs.CenterNewLine("Please take your card");
                 Environment.Exit(0);
             }
-            TransferAmount();
+            GetAmount();
         }
         // Enter transfer Amount 
-        public static void TransferAmount()
+        public static void GetAmount()
         {
             Console.Write("NGN:");
             //  _transferAmount = decimal.Parse(Console.ReadLine());
 
-            var transfer = new TransactionModel { TransactionDescription = "ATM Transfer", TransactionAmount = _transferAmount };
+            var transfer = new TransactionModel { TransactionDescription = "ATM Transfer", TransactionAmount = _amount };
 
-            if (decimal.TryParse(Console.ReadLine(), out _transferAmount))
+            if (decimal.TryParse(Console.ReadLine(), out _amount))
             {
-                if (_transferAmount <= user.Balance)
+                if (_amount <= user.Balance)
                 {
-                    user.Balance -= _transferAmount;
+                    user.Balance -= _amount;
                     dbAccess.UpdateBalance(user, user.Balance);
                     transfer.TransactionStatus = TransactionStatus.Sucessfull;
                     transfer.TransactionType = TransactionType.Debit;
@@ -215,17 +213,17 @@ namespace ConsoleATM
                     Console.Clear();
                     Designs.CenterNewLine("Insufficient funds!\n");
                     //transfer.TransactionStatus = TransactionStatus.Unsucessfull;
-                  // transfer.TransactionType = TransactionType.Debit;
-                    TransferAmount();
+                    // transfer.TransactionType = TransactionType.Debit;
+                    GetAmount();
                 }
             }
             else
             {
                 Console.Clear();
                 Designs.CenterNewLine("Invalid amount format!\n");
-             //   transfer.TransactionStatus = TransactionStatus.Unsucessfull;
-             //   transfer.TransactionType = TransactionType.Debit;
-                TransferAmount();
+                //   transfer.TransactionStatus = TransactionStatus.Unsucessfull;
+                //   transfer.TransactionType = TransactionType.Debit;
+                GetAmount();
             }
         }
         // Confirm recepient details
@@ -234,21 +232,21 @@ namespace ConsoleATM
             Console.Clear();
             Designs.CenterNewLine("Please confirm details of Transfer\n");
             Console.WriteLine("Account Number: " + _beneficiaryAccountNumber);
-            Console.WriteLine("Amount:NGN " + _transferAmount);
+            Console.WriteLine("Amount:NGN " + _amount);
             Console.WriteLine("Bank: " + _beneficiaryBank);
             Console.WriteLine($"{Designs.AlignText(70, "1. Proceed")}");
             Console.WriteLine($"{Designs.AlignText(70, "2. Cancel")}");
-            ConsoleKeyInfo confirmInput = Console.ReadKey();
+            ConsoleKeyInfo option = Console.ReadKey();
             Console.Clear();
 
-            if (confirmInput.Key == ConsoleKey.NumPad1)
+            if (option.Key == ConsoleKey.NumPad1)
             {
-                UserInterface.TransactionInProgressInterface();
+                UserInterface.TransactionProgress();
                 Console.Clear();
-                UserInterface.TransactionCompletedInterface();
-                UserInterface.NewTransactionInterface();
+                UserInterface.TransactionCompleted();
+                UserInterface.NewTransaction();
             }
-            else if (confirmInput.Key == ConsoleKey.NumPad2)
+            else if (option.Key == ConsoleKey.NumPad2)
             {
                 Designs.CenterNewLine("Please take your card");
                 Environment.Exit(0);

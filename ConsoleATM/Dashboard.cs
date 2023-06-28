@@ -10,17 +10,17 @@ namespace ConsoleATM
         {
             Console.Title = "Console ATM";
             Console.SetWindowSize(100, 20);
-            UserInterface.WelcomeInterface();
+            UserInterface.Welcome();
 
-            // Check for a correct Pin
-            bool inCorrectPin = true;
+            // Login with pin
+            bool isNotPin = true;
 
-            while (inCorrectPin)
+            while (isNotPin)
             {
                 try
                 {
-                    GetPin();
-                    inCorrectPin = false;
+                    VerifyPin();
+                    isNotPin = false;
                 }
                 catch (InvalidPinException e)
                 {
@@ -37,8 +37,8 @@ namespace ConsoleATM
                     Console.Clear();
                 }
             }
-            var userTransaction = new Transactions();
-            userTransaction.SelectTransaction();
+            var transactionType = new Transactions();
+            transactionType.SelectTransaction();
         }
     }
 }
