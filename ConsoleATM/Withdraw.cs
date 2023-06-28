@@ -9,61 +9,61 @@ namespace ConsoleATM
     {
         private static decimal transactionAmount = 0;
 
-        // Acoount type
-        public static void WithdrawalAccountType()
+        // Account type
+        public static void GetAccountType()
         {
             Console.Clear();
-            UserInterface.AccountTypeInterface();
+            UserInterface.AccountType();
             ConsoleKeyInfo accountType = Console.ReadKey();
             Console.Clear();
 
             if (accountType.Key == ConsoleKey.NumPad1 || accountType.Key == ConsoleKey.NumPad2)
-                UserInterface.WithdrawalAmountInterface();
+                UserInterface.WithdrawalAmount();
             else
             {
                 Console.Clear();
                 Designs.CenterNewLine("Please take your card");
                 Environment.Exit(0);
             }
-            WithdrawalAmount();
+            GetAmount();
         }
 
         // Select an amount from the list,
         // or enter a custom amount.
-        public static void WithdrawalAmount()
+        public static void GetAmount()
         {
-            ConsoleKeyInfo selectAmount = Console.ReadKey();
+            ConsoleKeyInfo amountOption = Console.ReadKey();
             Console.Clear();
 
-            switch (selectAmount.Key)
+            switch (amountOption.Key)
             {
                 case ConsoleKey.NumPad1:
                     transactionAmount = 500;
-                    UserInterface.TransactionInProgressInterface();
+                    UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad2:
                     transactionAmount = 1000;
-                    UserInterface.TransactionInProgressInterface();
+                    UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad3:
                     transactionAmount = 2000;
-                    UserInterface.TransactionInProgressInterface();
+                    UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad4:
                     transactionAmount = 5000;
-                    UserInterface.TransactionInProgressInterface();
+                    UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad5:
                     transactionAmount = 10000;
-                    UserInterface.TransactionInProgressInterface();
+                    UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad6:
                     transactionAmount = 15000;
-                    UserInterface.TransactionInProgressInterface();
+                    UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad7:
                     transactionAmount = 20000;
-                    UserInterface.TransactionInProgressInterface();
+                    UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad8:
                     Console.Clear();
@@ -76,7 +76,7 @@ namespace ConsoleATM
                     {
                         Console.Clear();
                         transactionAmount = amount;
-                        UserInterface.TransactionInProgressInterface();
+                        UserInterface.TransactionProgress();
                     }
                     else
                     {
@@ -89,12 +89,11 @@ namespace ConsoleATM
                             {
                                 Console.Clear();
                                 transactionAmount = amount;
-                                UserInterface.TransactionInProgressInterface();
+                                UserInterface.TransactionProgress();
                             }
                         }
                     }
                     break;
-
                 case ConsoleKey.NumPad9:
                     Console.Clear();
                     Designs.CenterNewLine("Please take your card ");
@@ -109,11 +108,10 @@ namespace ConsoleATM
                     Environment.Exit(0);
                     break;
             }
-            WithdrawStatus();
+            GetStatus();
         }
-
         // Check that there is sufficient funds to withdraw
-        public static void WithdrawStatus()
+        public static void GetStatus()
         {
             var withdraw = new TransactionModel { TransactionDescription = "ATM Withdrawal", TransactionAmount = transactionAmount };
 
@@ -124,12 +122,12 @@ namespace ConsoleATM
                 withdraw.TransactionStatus = TransactionStatus.Sucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
                 dbAccess.CreateTransaction(withdraw, user.UserName);
-                UserInterface.TransactionInProgressInterface();
+                UserInterface.TransactionProgress();
                 Designs.CenterNewLine("Please take your cash");
                 Thread.Sleep(6000);
                 Console.Clear();
-                UserInterface.TransactionCompletedInterface();
-                UserInterface.NewTransactionInterface();
+                UserInterface.TransactionCompleted();
+                UserInterface.NewTransaction();
             }
             else
             {
@@ -139,8 +137,8 @@ namespace ConsoleATM
                 withdraw.TransactionType = TransactionType.Debit;
                 Thread.Sleep(3000);
                 Console.Clear();
-                UserInterface.WithdrawalAmountInterface();
-                WithdrawalAmount();
+                UserInterface.WithdrawalAmount();
+                GetAmount();
             }
         }
     }

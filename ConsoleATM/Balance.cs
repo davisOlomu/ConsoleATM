@@ -8,7 +8,7 @@ namespace ConsoleATM
 {
     class Balance
     {
-        public static void GetBalance()
+        public static void ShowBalance()
         {
             try
             {
@@ -18,11 +18,11 @@ namespace ConsoleATM
                     Console.WriteLine($"Current Balance\t\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}");
                     Console.WriteLine($"Available Balance\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n\n");
                     Console.WriteLine($"{Designs.AlignText(70, "0> Exit")}");
-                    ConsoleKeyInfo userInput = Console.ReadKey();
+                    ConsoleKeyInfo option = Console.ReadKey();
 
-                    if (userInput.Key == ConsoleKey.NumPad0)
+                    if (option.Key == ConsoleKey.NumPad0)
                     {
-                        UserInterface.NewTransactionInterface();
+                        UserInterface.NewTransaction();
                     }
                     else
                     {
