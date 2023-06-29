@@ -10,7 +10,7 @@ namespace ConsoleATM
         // exposing static data
         // looking for a solution
         public static AccountModel user = new AccountModel();
-        public static DataAccess dbAccess = new DataAccess();
+        public static DataLayer dbAccess = new DataLayer();
         public static void VerifyPin()
         {
             Designs.CenterNewLine("ENTER FOUR DIGIT PIN-code.");
@@ -21,11 +21,12 @@ namespace ConsoleATM
             {
                 throw new InvalidPinException("Invalid PIN. Please enter a valid four-digit PIN.");
             }
-            user.Pin = pin;
 
+            user.Pin = pin;
+            string sqlStatment = $"Select * From Customer Where Pin = {user.Pin}";
             try
             {
-                if (dbAccess.ReadFromCustomerWithPin(user))
+                if (dbAccess.GetUser(user, sqlStatment))
                 {
                     UserInterface.Transactions();
                 }

@@ -52,7 +52,6 @@ namespace ConsoleATM
             Designs.CenterNewLine("TRANSACTION COMPLETED\n\n");
             Designs.CenterNewLine("A notification will be sent");
             Designs.CenterNewLine("to you shortly");
-
         }
         public static void NewTransaction()
         {

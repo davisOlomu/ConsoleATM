@@ -9,10 +9,11 @@ namespace ConsoleATM
     class Balance
     {
         public static void ShowBalance()
-        {
+        {     
             try
             {
-                if (dbAccess.ReadFromCustomerWithPin(user))
+                string sqlStatement = $"Select * From Customer Where Pin = {user.Pin}";
+                if (dbAccess.GetUser(user, sqlStatement))
                 {
                     Console.WriteLine($"The balances on this account as at {DateTime.Now} are as follows.\n");
                     Console.WriteLine($"Current Balance\t\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}");
