@@ -18,7 +18,9 @@ namespace ConsoleATM
             Console.Clear();
 
             if (accountType.Key == ConsoleKey.NumPad1 || accountType.Key == ConsoleKey.NumPad2)
+            {
                 UserInterface.WithdrawalAmount();
+            }   
             else
             {
                 Console.Clear();
@@ -27,7 +29,6 @@ namespace ConsoleATM
             }
             GetAmount();
         }
-
         // Select an amount from the list,
         // or enter a custom amount.
         public static void GetAmount()
