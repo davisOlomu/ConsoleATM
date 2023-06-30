@@ -8,6 +8,10 @@ namespace ConsoleATM
 {
     class Balance
     {
+        /// <summary>
+        /// Returns account balance of a verified user
+        /// at a specific date and time.
+        /// </summary>
         public static void ShowBalance()
         {     
             try

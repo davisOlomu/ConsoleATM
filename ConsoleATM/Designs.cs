@@ -4,19 +4,33 @@ namespace ConsoleATM
 {
     public  class Designs
     {
-        // Center with acarriage return
+        /// <summary>
+        /// Center with acarriage return
+        /// </summary>
+        /// <param name="message">application input</param>
         public static void CenterNewLine(string message)
         {
             int spaces = 50 + (message.Length / 2);
             Console.WriteLine(message.PadLeft(spaces));      
         }
-        // Center without carriage return
+
+        /// <summary>
+        ///  Center without carriage return
+        /// </summary>
+        /// <param name="message">application input</param>
         public static void CenterSameLine(string message)
         {
             int spaces = 50 + (message.Length / 2);
             Console.Write(message.PadLeft(spaces));
         }
-        // Align text
+
+        /// <summary>
+        /// Position text central to the console window.
+        /// </summary>
+        /// <param name="SpacesToAdd"></param>
+        /// <param name="Msg"></param>
+        /// <param name="Alignment"></param>
+        /// <returns></returns>
         public static string AlignText(int SpacesToAdd, string Msg, string Alignment = "R")
         {
             if (Alignment == "L")
@@ -28,7 +42,10 @@ namespace ConsoleATM
             }
             return Msg;
         }
-        // Fancy lines
+
+        /// <summary>
+        /// Fancy lines
+        /// </summary>
         public static void DrawLine()
         {
             Console.WriteLine("+--------------------------------------------------------------------------------------------------+");
