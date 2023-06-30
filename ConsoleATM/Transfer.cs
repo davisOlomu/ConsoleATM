@@ -6,6 +6,9 @@ using static ConsoleATM.Login;
 
 namespace ConsoleATM
 {
+    /// <summary>
+    /// All the logical steps involved in making a transfer.
+    /// </summary>
     class Transfer
     {
         private static decimal _amount;
@@ -14,7 +17,12 @@ namespace ConsoleATM
         private static string _beneficiaryBank;
         private static string[] _allBanks;
 
-        // Transfer funds
+        /// <summary>
+        /// Choose beneficiary bank from a list of 
+        /// pre-defined banks.
+        /// The nesting of if statements is too deep,
+        /// i'm trying to get a fix for it soon.
+        /// </summary>
         public static void GetBeneficiaryBank()
         {
             Console.Clear();
@@ -145,7 +153,10 @@ namespace ConsoleATM
                 UserInterface.BeneficiaryBank();
             }
         }
-        // Beneficiary account number
+
+        /// <summary>
+        /// Fill in beneficiary account number.
+        /// </summary>
         public static void GetBeneficiaryAccounNumber()
         {
             UserInterface.BeneficiaryAccountNumber();
@@ -167,7 +178,10 @@ namespace ConsoleATM
             }
             GetBeneficiaryAccountType();
         }
-        // Beneficiary Account type
+
+        /// <summary>
+        /// Choose an account type
+        /// </summary>
         public static void GetBeneficiaryAccountType()
         {
             ConsoleKeyInfo option = Console.ReadKey();
@@ -189,12 +203,13 @@ namespace ConsoleATM
             }
             GetAmount();
         }
-        // Enter transfer Amount 
+
+        /// <summary>
+        /// Verify if user input is a valid amount.
+        /// </summary>
         public static void GetAmount()
         {
             Console.Write("NGN:");
-            //  _transferAmount = decimal.Parse(Console.ReadLine());
-
             var transfer = new TransactionModel { TransactionDescription = "ATM Transfer", TransactionAmount = _amount };
 
             if (decimal.TryParse(Console.ReadLine(), out _amount))
@@ -212,7 +227,7 @@ namespace ConsoleATM
                 {
                     Console.Clear();
                     Designs.CenterNewLine("Insufficient funds!\n");
-                    //transfer.TransactionStatus = TransactionStatus.Unsucessfull;
+                    // transfer.TransactionStatus = TransactionStatus.Unsucessfull;
                     // transfer.TransactionType = TransactionType.Debit;
                     GetAmount();
                 }
@@ -221,12 +236,17 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 Designs.CenterNewLine("Invalid amount format!\n");
-                //   transfer.TransactionStatus = TransactionStatus.Unsucessfull;
-                //   transfer.TransactionType = TransactionType.Debit;
+                //  transfer.TransactionStatus = TransactionStatus.Unsucessfull;
+                //  transfer.TransactionType = TransactionType.Debit;
                 GetAmount();
             }
         }
-        // Confirm recepient details
+
+        /// <summary>
+        /// Check all transaction details
+        /// before transfer is made.
+        /// Transaction cannot be cancelled beyond this point.
+        /// </summary>
         public static void ConfirmTransferDetails()
         {
             Console.Clear();

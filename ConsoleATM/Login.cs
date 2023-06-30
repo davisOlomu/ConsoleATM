@@ -6,11 +6,18 @@ namespace ConsoleATM
 {
     partial class Login
     {
-        // wrong code approach
-        // exposing static data
-        // looking for a solution
+        // Wrong code approach
+        // Exposing static data
+        // Looking for a solution
         public static AccountModel user = new AccountModel();
         public static DataLayer dbAccess = new DataLayer();
+
+        /// <summary>
+        /// Authenticate a valid user using user's four digit pin
+        /// </summary>
+        /// <param name="user">sucessfully logged in user</param>
+        /// <exception cref="InvalidPinException"></exception>
+        /// <exception cref="IncorrectPinException"></exception>
         public static void VerifyPin()
         {
             Designs.CenterNewLine("ENTER FOUR DIGIT PIN-code.");

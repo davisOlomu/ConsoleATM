@@ -5,11 +5,16 @@ using static ConsoleATM.Login;
 
 namespace ConsoleATM
 {
+    /// <summary>
+    /// All logical steps involved in making a withdrawal.
+    /// </summary>
     class Withdraw
     {
         private static decimal transactionAmount = 0;
 
-        // Account type
+        /// <summary>
+        /// Pick your account type.
+        /// </summary>
         public static void GetAccountType()
         {
             Console.Clear();
@@ -20,7 +25,7 @@ namespace ConsoleATM
             if (accountType.Key == ConsoleKey.NumPad1 || accountType.Key == ConsoleKey.NumPad2)
             {
                 UserInterface.WithdrawalAmount();
-            }   
+            }
             else
             {
                 Console.Clear();
@@ -29,8 +34,11 @@ namespace ConsoleATM
             }
             GetAmount();
         }
-        // Select an amount from the list,
-        // or enter a custom amount.
+
+        /// <summary>
+        /// Select an amount from the list.
+        /// Or opt to enter a custom amount.
+        /// </summary>
         public static void GetAmount()
         {
             ConsoleKeyInfo amountOption = Console.ReadKey();
@@ -67,9 +75,7 @@ namespace ConsoleATM
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad8:
-                    Console.Clear();
-
-                    // Enter a custom amount 
+                    Console.Clear();              
                     Console.Write("\n\nEnter in multiples of 1000\n\n\t\t\t  N: ");
                     decimal amount;
 
@@ -111,7 +117,10 @@ namespace ConsoleATM
             }
             GetStatus();
         }
-        // Check that there is sufficient funds to withdraw
+
+        /// <summary>
+        ///  Get notifications about the current transaction.
+        /// </summary>
         public static void GetStatus()
         {
             var withdraw = new TransactionModel { TransactionDescription = "ATM Withdrawal", TransactionAmount = transactionAmount };

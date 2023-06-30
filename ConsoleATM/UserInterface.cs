@@ -3,6 +3,9 @@ using System.Threading;
 
 namespace ConsoleATM
 {
+    /// <summary>
+    /// All user Interface.
+    /// </summary>
     class UserInterface
     {
         public static void Welcome()

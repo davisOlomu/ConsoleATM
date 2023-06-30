@@ -3,6 +3,9 @@ using System.Threading;
 
 namespace ConsoleATM
 {
+    /// <summary>
+    /// List of all functionality available to the user.
+    /// </summary>
     class Transactions
     {
         public void SelectTransaction()
