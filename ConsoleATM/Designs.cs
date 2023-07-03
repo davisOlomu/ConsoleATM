@@ -2,7 +2,7 @@
 
 namespace ConsoleATM
 {
-    public  class Designs
+    internal static class Designs
     {
         /// <summary>
         /// Center with acarriage return

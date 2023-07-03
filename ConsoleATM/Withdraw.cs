@@ -8,8 +8,12 @@ namespace ConsoleATM
     /// <summary>
     /// All logical steps involved in making a withdrawal.
     /// </summary>
-    class Withdraw
+    internal static class Withdraw
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private static DataLayer databaseAccess = new DataLayer();
         private static decimal transactionAmount = 0;
 
         /// <summary>
@@ -128,10 +132,10 @@ namespace ConsoleATM
             if (transactionAmount <= user.Balance)
             {
                 user.Balance -= transactionAmount;
-                dbAccess.UpdateBalance(user, user.Balance);
+                databaseAccess.UpdateBalance(user, user.Balance);
                 withdraw.TransactionStatus = TransactionStatus.Sucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
-                dbAccess.CreateTransaction(withdraw, user.UserName);
+                databaseAccess.CreateTransaction(withdraw, user.UserName);
                 UserInterface.TransactionProgress();
                 Designs.CenterNewLine("Please take your cash");
                 Thread.Sleep(6000);

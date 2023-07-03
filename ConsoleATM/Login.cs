@@ -4,13 +4,13 @@ using System.Data.SqlClient;
 
 namespace ConsoleATM
 {
-    partial class Login
+    internal class Login
     {
         // Wrong code approach
         // Exposing static data
         // Looking for a solution
         public static AccountModel user = new AccountModel();
-        public static DataLayer dbAccess = new DataLayer();
+        private static DataLayer databaseAccess = new DataLayer();
 
         /// <summary>
         /// Authenticate a valid user using user's four digit pin
@@ -33,7 +33,7 @@ namespace ConsoleATM
             string sqlStatment = $"Select * From Customer Where Pin = {user.Pin}";
             try
             {
-                if (dbAccess.GetUser(user, sqlStatment))
+                if (databaseAccess.GetUser(user, sqlStatment))
                 {
                     UserInterface.Transactions();
                 }

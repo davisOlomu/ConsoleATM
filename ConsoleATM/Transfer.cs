@@ -9,13 +9,14 @@ namespace ConsoleATM
     /// <summary>
     /// All the logical steps involved in making a transfer.
     /// </summary>
-    class Transfer
+    internal static class Transfer
     {
         private static decimal _amount;
         private static ConsoleKeyInfo _bankOption;
         private static double _beneficiaryAccountNumber;
         private static string _beneficiaryBank;
         private static string[] _allBanks;
+        private static DataLayer databaseAccess = new DataLayer();
 
         /// <summary>
         /// Choose beneficiary bank from a list of 
@@ -217,10 +218,10 @@ namespace ConsoleATM
                 if (_amount <= user.Balance)
                 {
                     user.Balance -= _amount;
-                    dbAccess.UpdateBalance(user, user.Balance);
+                    databaseAccess.UpdateBalance(user, user.Balance);
                     transfer.TransactionStatus = TransactionStatus.Sucessfull;
                     transfer.TransactionType = TransactionType.Debit;
-                    dbAccess.CreateTransaction(transfer, user.UserName);
+                    databaseAccess.CreateTransaction(transfer, user.UserName);
                     ConfirmTransferDetails();
                 }
                 else

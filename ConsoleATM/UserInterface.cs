@@ -6,7 +6,7 @@ namespace ConsoleATM
     /// <summary>
     /// All user Interface.
     /// </summary>
-    class UserInterface
+    internal static class UserInterface
     {
         public static void Welcome()
         {
@@ -69,8 +69,7 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 Login.VerifyPin();
-                Transactions transactions = new Transactions();
-                transactions.SelectTransaction();
+                ConsoleATM.Transactions.SelectATransaction();
             }
             else if (option.Key == ConsoleKey.NumPad2)
             {
