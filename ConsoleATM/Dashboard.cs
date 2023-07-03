@@ -38,8 +38,7 @@ namespace ConsoleATM
                     Console.Clear();
                 }
             }
-            var transactionType = new Transactions();
-            transactionType.SelectTransaction();
+            Transactions.SelectATransaction();
         }
     }
 }

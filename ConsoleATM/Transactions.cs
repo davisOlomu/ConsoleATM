@@ -6,9 +6,9 @@ namespace ConsoleATM
     /// <summary>
     /// List of all functionality available to the user.
     /// </summary>
-    class Transactions
+    internal static class Transactions
     {
-        public void SelectTransaction()
+        public  static void SelectATransaction()
         {
             Console.WriteLine(Environment.NewLine);
             ConsoleKeyInfo option = Console.ReadKey();

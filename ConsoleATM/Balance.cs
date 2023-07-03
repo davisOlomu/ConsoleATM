@@ -3,11 +3,17 @@ using System.Globalization;
 using System.Data.SqlClient;
 using static ConsoleATM.Login;
 using System.Threading;
+using ConsoleBankDataAccess;
 
 namespace ConsoleATM
 {
-    class Balance
+ public static  class Balance
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        private static DataLayer databaseAccess = new DataLayer();
+
         /// <summary>
         /// Returns account balance of a verified user
         /// at a specific date and time.
@@ -17,7 +23,7 @@ namespace ConsoleATM
             try
             {
                 string sqlStatement = $"Select * From Customer Where Pin = {user.Pin}";
-                if (dbAccess.GetUser(user, sqlStatement))
+                if (databaseAccess.GetUser(user, sqlStatement))
                 {
                     Console.WriteLine($"The balances on this account as at {DateTime.Now} are as follows.\n");
                     Console.WriteLine($"Current Balance\t\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}");
