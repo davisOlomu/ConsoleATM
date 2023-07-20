@@ -4,19 +4,22 @@ using System.Threading;
 using ConsoleBankDataAccess;
 using static ConsoleATM.Login;
 
-namespace ConsoleATM
+namespace ConsoleATM 
 {
     /// <summary>
     /// All the logical steps involved in making a transfer.
     /// </summary>
     internal static class Transfer
     {
+        /// <summary>
+        /// 
+        /// </summary>
         private static decimal _amount;
         private static ConsoleKeyInfo _bankOption;
         private static double _beneficiaryAccountNumber;
         private static string _beneficiaryBank;
         private static string[] _allBanks;
-        private static DataLayer databaseAccess = new DataLayer();
+        private static readonly DataLayer databaseAccess = new DataLayer();
 
         /// <summary>
         /// Choose beneficiary bank from a list of 
@@ -48,7 +51,6 @@ namespace ConsoleATM
                     _beneficiaryBank = _allBanks[3];
 
                 GetBeneficiaryAccounNumber();
-
             }
 
             if (_bankOption.Key == ConsoleKey.NumPad2)
@@ -59,7 +61,6 @@ namespace ConsoleATM
                 {
                     Console.WriteLine(bankName);
                 }
-
                 _bankOption = Console.ReadKey();
                 Console.Clear();
 
@@ -185,14 +186,14 @@ namespace ConsoleATM
         /// </summary>
         public static void GetBeneficiaryAccountType()
         {
-            ConsoleKeyInfo option = Console.ReadKey();
+            ConsoleKeyInfo userOption = Console.ReadKey();
             Console.Clear();
 
-            if (option.Key == ConsoleKey.NumPad1)
+            if (userOption.Key == ConsoleKey.NumPad1)
             {
                 UserInterface.TransferAmount();
             }
-            else if (option.Key == ConsoleKey.NumPad2)
+            else if (userOption.Key == ConsoleKey.NumPad2)
             {
                 UserInterface.TransferAmount();
             }
@@ -228,8 +229,8 @@ namespace ConsoleATM
                 {
                     Console.Clear();
                     Designs.CenterNewLine("Insufficient funds!\n");
-                    // transfer.TransactionStatus = TransactionStatus.Unsucessfull;
-                    // transfer.TransactionType = TransactionType.Debit;
+                    //transfer.TransactionStatus = TransactionStatus.Unsucessfull;
+                    //transfer.TransactionType = TransactionType.Debit;
                     GetAmount();
                 }
             }
@@ -237,8 +238,8 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 Designs.CenterNewLine("Invalid amount format!\n");
-                //  transfer.TransactionStatus = TransactionStatus.Unsucessfull;
-                //  transfer.TransactionType = TransactionType.Debit;
+                //transfer.TransactionStatus = TransactionStatus.Unsucessfull;
+                //transfer.TransactionType = TransactionType.Debit;
                 GetAmount();
             }
         }
@@ -257,17 +258,17 @@ namespace ConsoleATM
             Console.WriteLine("Bank: " + _beneficiaryBank);
             Console.WriteLine($"{Designs.AlignText(70, "1. Proceed")}");
             Console.WriteLine($"{Designs.AlignText(70, "2. Cancel")}");
-            ConsoleKeyInfo option = Console.ReadKey();
+            ConsoleKeyInfo userOption = Console.ReadKey();
             Console.Clear();
 
-            if (option.Key == ConsoleKey.NumPad1)
+            if (userOption.Key == ConsoleKey.NumPad1)
             {
                 UserInterface.TransactionProgress();
                 Console.Clear();
                 UserInterface.TransactionCompleted();
                 UserInterface.NewTransaction();
             }
-            else if (option.Key == ConsoleKey.NumPad2)
+            else if (userOption.Key == ConsoleKey.NumPad2)
             {
                 Designs.CenterNewLine("Please take your card");
                 Environment.Exit(0);

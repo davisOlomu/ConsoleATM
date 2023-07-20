@@ -6,11 +6,13 @@ namespace ConsoleATM
 {
     internal class Login
     {
-        // Wrong code approach
-        // Exposing static data
-        // Looking for a solution
+        /// <summary> 
+        /// Wrong code approach
+        /// Exposing static data
+        /// Looking for a solution
+        /// </summary>
         public static AccountModel user = new AccountModel();
-        private static DataLayer databaseAccess = new DataLayer();
+        private static readonly DataLayer databaseAccess = new DataLayer();
 
         /// <summary>
         /// Authenticate a valid user using user's four digit pin

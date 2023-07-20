@@ -11,9 +11,9 @@ namespace ConsoleATM
         public  static void SelectATransaction()
         {
             Console.WriteLine(Environment.NewLine);
-            ConsoleKeyInfo option = Console.ReadKey();
+            ConsoleKeyInfo userOption = Console.ReadKey();
 
-            switch (option.Key)
+            switch (userOption.Key)
             {
                 case ConsoleKey.NumPad1:
                     Withdraw.GetAccountType();
