@@ -12,7 +12,7 @@ namespace ConsoleATM
         /// <summary>
         /// 
         /// </summary>
-        private static DataLayer databaseAccess = new DataLayer();
+        private static readonly DataLayer databaseAccess = new DataLayer();
 
         /// <summary>
         /// Returns account balance of a verified user

@@ -13,11 +13,11 @@ namespace ConsoleATM
         /// <summary>
         /// 
         /// </summary>
-        private static DataLayer databaseAccess = new DataLayer();
-        private static decimal transactionAmount = 0;
+        private static readonly DataLayer databaseAccess = new DataLayer();
+        private static decimal _amount;
 
         /// <summary>
-        /// Pick your account type.
+        /// Pick your account type. 
         /// </summary>
         public static void GetAccountType()
         {
@@ -45,53 +45,53 @@ namespace ConsoleATM
         /// </summary>
         public static void GetAmount()
         {
-            ConsoleKeyInfo amountOption = Console.ReadKey();
+            ConsoleKeyInfo amount = Console.ReadKey();
             Console.Clear();
 
-            switch (amountOption.Key)
+            switch (amount.Key)
             {
                 case ConsoleKey.NumPad1:
-                    transactionAmount = 500;
+                    _amount = 500;
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad2:
-                    transactionAmount = 1000;
+                    _amount = 1000;
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad3:
-                    transactionAmount = 2000;
+                    _amount = 2000;
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad4:
-                    transactionAmount = 5000;
+                    _amount = 5000;
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad5:
-                    transactionAmount = 10000;
+                    _amount = 10000;
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad6:
-                    transactionAmount = 15000;
+                    _amount = 15000;
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad7:
-                    transactionAmount = 20000;
+                    _amount = 20000;
                     UserInterface.TransactionProgress();
                     break;
                 case ConsoleKey.NumPad8:
                     Console.Clear();              
-                    Console.Write("\n\nEnter in multiples of 1000\n\n\t\t\t  N: ");
-                    decimal amount;
+                    Console.Write("\n\nEnter in multiples of 1000\n\n\t\t\t  #:");
+                    decimal customAmount;
 
-                    if (decimal.TryParse(Console.ReadLine(), out amount))
+                    if (decimal.TryParse(Console.ReadLine(), out customAmount))
                     {
                         Console.Clear();
-                        transactionAmount = amount;
+                        _amount = customAmount;
                         UserInterface.TransactionProgress();
                     }
                     else
                     {
-                        while (!decimal.TryParse(Console.ReadLine(), out amount))
+                        while (!decimal.TryParse(Console.ReadLine(), out customAmount))
                         {
                             Console.Clear();
                             Console.Write("\n\n\t\tEnter in multiples of 1000\n\n\t\t\t  N: ");
@@ -99,7 +99,7 @@ namespace ConsoleATM
                             if (double.TryParse(Console.ReadLine(), out _))
                             {
                                 Console.Clear();
-                                transactionAmount = amount;
+                                _amount = customAmount;
                                 UserInterface.TransactionProgress();
                             }
                         }
@@ -127,11 +127,11 @@ namespace ConsoleATM
         /// </summary>
         public static void GetStatus()
         {
-            var withdraw = new TransactionModel { TransactionDescription = "ATM Withdrawal", TransactionAmount = transactionAmount };
+            var withdraw = new TransactionModel { TransactionDescription = "ATM Withdrawal", TransactionAmount = _amount };
 
-            if (transactionAmount <= user.Balance)
+            if (_amount <= user.Balance)
             {
-                user.Balance -= transactionAmount;
+                user.Balance -= _amount;
                 databaseAccess.UpdateBalance(user, user.Balance);
                 withdraw.TransactionStatus = TransactionStatus.Sucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
