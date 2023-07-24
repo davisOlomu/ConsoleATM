@@ -165,12 +165,14 @@ namespace ConsoleATM
             string accountNumber = Console.ReadLine();
             Console.Clear();
 
-            while (!double.TryParse(accountNumber, out _beneficiaryAccountNumber) || accountNumber.Length > 10 || accountNumber.Length > 10)
+            while (!(double.TryParse(accountNumber, out _beneficiaryAccountNumber)))
             {
                 Designs.CenterNewLine("Invalid account number entered\n");
                 Designs.CenterNewLine("Re-Enter Account Number");
                 Thread.Sleep(2000);
                 Console.Clear();
+                Console.Write("Account Number: ");
+                accountNumber = Console.ReadLine();
             }
             Console.Clear();
             UserInterface.AccountType();
@@ -222,6 +224,9 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 Designs.CenterNewLine("Insufficient funds!\n");
+                Thread.Sleep(2000);
+                Console.Clear();
+                Console.Write("NGN:");
                 decimal.TryParse(Console.ReadLine(), out _amount);
             }
             user.Balance -= _amount;
