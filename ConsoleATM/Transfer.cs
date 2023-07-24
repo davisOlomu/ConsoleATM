@@ -4,7 +4,7 @@ using System.Threading;
 using ConsoleBankDataAccess;
 using static ConsoleATM.Login;
 
-namespace ConsoleATM 
+namespace ConsoleATM
 {
     /// <summary>
     /// All the logical steps involved in making a transfer.
@@ -165,19 +165,15 @@ namespace ConsoleATM
             string accountNumber = Console.ReadLine();
             Console.Clear();
 
-            if (!double.TryParse(accountNumber, out _beneficiaryAccountNumber) || accountNumber.Length > 10 || accountNumber.Length > 10)
+            while (!double.TryParse(accountNumber, out _beneficiaryAccountNumber) || accountNumber.Length > 10 || accountNumber.Length > 10)
             {
                 Designs.CenterNewLine("Invalid account number entered\n");
                 Designs.CenterNewLine("Re-Enter Account Number");
-                Thread.Sleep(2500);
+                Thread.Sleep(2000);
                 Console.Clear();
-                GetBeneficiaryAccounNumber();
             }
-            else
-            {
-                Console.Clear();
-                UserInterface.AccountType();
-            }
+            Console.Clear();
+            UserInterface.AccountType();
             GetBeneficiaryAccountType();
         }
 
@@ -214,36 +210,27 @@ namespace ConsoleATM
             Console.Write("NGN:");
             var transfer = new TransactionModel { TransactionDescription = "ATM Transfer", TransactionAmount = _amount };
 
-            if (decimal.TryParse(Console.ReadLine(), out _amount))
-            {
-                if (_amount <= user.Balance)
-                {
-                    user.Balance -= _amount;
-                    databaseAccess.UpdateBalance(user, user.Balance);
-                    transfer.TransactionStatus = TransactionStatus.Sucessfull;
-                    transfer.TransactionType = TransactionType.Debit;
-                    databaseAccess.CreateTransaction(transfer, user.UserName);
-                    ConfirmTransferDetails();
-                }
-                else
-                {
-                    Console.Clear();
-                    Designs.CenterNewLine("Insufficient funds!\n");
-                    //transfer.TransactionStatus = TransactionStatus.Unsucessfull;
-                    //transfer.TransactionType = TransactionType.Debit;
-                    GetAmount();
-                }
-            }
-            else
+            while (!(decimal.TryParse(Console.ReadLine(), out _amount)))
             {
                 Console.Clear();
                 Designs.CenterNewLine("Invalid amount format!\n");
-                //transfer.TransactionStatus = TransactionStatus.Unsucessfull;
-                //transfer.TransactionType = TransactionType.Debit;
-                GetAmount();
+                Thread.Sleep(2000);
+                Console.Clear();
+                Console.Write("NGN:");
             }
+            while (!(_amount <= user.Balance))
+            {
+                Console.Clear();
+                Designs.CenterNewLine("Insufficient funds!\n");
+                decimal.TryParse(Console.ReadLine(), out _amount);
+            }
+            user.Balance -= _amount;
+            databaseAccess.UpdateBalance(user, user.Balance);
+            transfer.TransactionStatus = TransactionStatus.Sucessfull;
+            transfer.TransactionType = TransactionType.Debit;
+            databaseAccess.CreateTransaction(transfer, user.UserName);
+            ConfirmTransferDetails();
         }
-
         /// <summary>
         /// Check all transaction details
         /// before transfer is made.
