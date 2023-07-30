@@ -68,7 +68,7 @@ namespace ConsoleATM
             if (option.Key == ConsoleKey.NumPad1)
             {
                 Console.Clear();
-                Login.VerifyPin();
+                Login.VerifyUser();
                 ConsoleATM.Transactions.SelectATransaction();
             }
             else if (option.Key == ConsoleKey.NumPad2)

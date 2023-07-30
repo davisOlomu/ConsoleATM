@@ -20,7 +20,7 @@ namespace ConsoleATM
         /// <param name="user">sucessfully logged in user</param>
         /// <exception cref="InvalidPinException"></exception>
         /// <exception cref="IncorrectPinException"></exception>
-        public static void VerifyPin()
+        public static void VerifyUser()
         {
             Designs.CenterNewLine("ENTER FOUR DIGIT PIN-code.");
             Designs.CenterNewLine("Press <CANCEL> for cancellation");
@@ -30,7 +30,6 @@ namespace ConsoleATM
             {
                 throw new InvalidPinException("Invalid PIN. Please enter a valid four-digit PIN.");
             }
-
             user.Pin = pin;
             string sqlStatment = $"Select * From Customer Where Pin = {user.Pin}";
             try

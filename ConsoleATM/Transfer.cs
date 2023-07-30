@@ -155,7 +155,6 @@ namespace ConsoleATM
                 UserInterface.BeneficiaryBank();
             }
         }
-
         /// <summary>
         /// Fill in beneficiary account number.
         /// </summary>
@@ -178,7 +177,6 @@ namespace ConsoleATM
             UserInterface.AccountType();
             GetBeneficiaryAccountType();
         }
-
         /// <summary>
         /// Choose an account type
         /// </summary>
@@ -203,7 +201,6 @@ namespace ConsoleATM
             }
             GetAmount();
         }
-
         /// <summary>
         /// Verify if user input is a valid amount.
         /// </summary>
@@ -212,22 +209,28 @@ namespace ConsoleATM
             Console.Write("NGN:");
             var transfer = new TransactionModel { TransactionDescription = "ATM Transfer", TransactionAmount = _amount };
 
-            while (!(decimal.TryParse(Console.ReadLine(), out _amount)))
+            while (true)
             {
-                Console.Clear();
-                Designs.CenterNewLine("Invalid amount format!\n");
-                Thread.Sleep(2000);
-                Console.Clear();
-                Console.Write("NGN:");
-            }
-            while (!(_amount <= user.Balance))
-            {
-                Console.Clear();
-                Designs.CenterNewLine("Insufficient funds!\n");
-                Thread.Sleep(2000);
-                Console.Clear();
-                Console.Write("NGN:");
-                decimal.TryParse(Console.ReadLine(), out _amount);
+                if (!(decimal.TryParse(Console.ReadLine(), out _amount)))
+                {
+                    Console.Clear();
+                    Designs.CenterNewLine("Invalid amount format!\n");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    Console.Write("NGN:");
+                }
+                else if (!(_amount <= user.Balance))
+                {
+                    Console.Clear();
+                    Designs.CenterNewLine("Insufficient funds!\n");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    Console.Write("NGN:");
+                }
+                else
+                {
+                    break;
+                }
             }
             user.Balance -= _amount;
             databaseAccess.UpdateBalance(user, user.Balance);
@@ -262,12 +265,12 @@ namespace ConsoleATM
             }
             else if (userOption.Key == ConsoleKey.NumPad2)
             {
-                Designs.CenterNewLine("Please take your card");
+                Designs.CenterNewLine("Please take your card.");
                 Environment.Exit(0);
             }
             else
             {
-                Designs.CenterNewLine("Please take your card");
+                Designs.CenterNewLine("Please take your card.");
                 Environment.Exit(0);
             }
         }
