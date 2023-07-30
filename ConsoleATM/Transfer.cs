@@ -265,12 +265,12 @@ namespace ConsoleATM
             }
             else if (userOption.Key == ConsoleKey.NumPad2)
             {
-                Designs.CenterNewLine("Please take your card");
+                Designs.CenterNewLine("Please take your card.");
                 Environment.Exit(0);
             }
             else
             {
-                Designs.CenterNewLine("Please take your card");
+                Designs.CenterNewLine("Please take your card.");
                 Environment.Exit(0);
             }
         }

@@ -14,30 +14,7 @@ namespace ConsoleATM
             Console.Title = "Console ATM";
             Console.SetWindowSize(100, 20);
             UserInterface.Welcome();
-
-            bool isNotPin = true;
-            while (isNotPin)
-            {
-                try
-                {
-                    VerifyPin();
-                    isNotPin = false;
-                }
-                catch (InvalidPinException e)
-                {
-                    Console.Clear();
-                    Designs.CenterNewLine(e.Message);
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                }
-                catch (IncorrectPinException e)
-                {
-                    Console.Clear();
-                    Designs.CenterNewLine(e.Message);
-                    Thread.Sleep(3000);
-                    Console.Clear();
-                }
-            }
+            Validation.ValidateUserLogin();         
             Transactions.SelectATransaction();
         }
     }
