@@ -5,15 +5,18 @@ using System.Data.SqlClient;
 namespace ConsoleATM
 {
     internal class Login
-    {
-        /// <summary> 
-        /// Wrong code approach
-        /// Exposing static data
-        /// Looking for a solution
-        /// </summary>
-        public static AccountModel user = new AccountModel();
+    {     
+        private static AccountModel userLoggedIn = new AccountModel();
         private static readonly DataLayer databaseAccess = new DataLayer();
 
+        /// <summary>
+        /// Expose user currently logged in.
+        /// </summary>
+        public static AccountModel UserLoggedIn
+        {
+            get { return userLoggedIn; }
+            set { userLoggedIn = value; }
+        }
         /// <summary>
         /// Authenticate a valid user using user's four digit pin
         /// </summary>
@@ -30,11 +33,11 @@ namespace ConsoleATM
             {
                 throw new InvalidPinException("Invalid PIN. Please enter a valid four-digit PIN.");
             }
-            user.Pin = pin;
-            string sqlStatment = $"Select * From Customer Where Pin = {user.Pin}";
+            UserLoggedIn.Pin = pin;
+            string sqlStatment = $"Select * From Customer Where Pin = {UserLoggedIn.Pin}";
             try
             {
-                if (databaseAccess.GetUser(user, sqlStatment))
+                if (databaseAccess.GetUser(UserLoggedIn, sqlStatment))
                 {
                     UserInterface.Transactions();
                 }

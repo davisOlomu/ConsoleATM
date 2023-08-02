@@ -11,7 +11,7 @@ namespace ConsoleATM
         /// <summary>
         ///  Make sure user logged in is a valid user.
         /// </summary>
-        public static void ValidateUserLogin()
+        public static void ValidatePin()
         {
             bool isNotPin = true;
             while (isNotPin)
