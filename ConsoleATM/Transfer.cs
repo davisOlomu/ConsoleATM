@@ -219,7 +219,7 @@ namespace ConsoleATM
                     Console.Clear();
                     Console.Write("NGN:");
                 }
-                else if (!(_amount <= user.Balance))
+                else if (!(_amount <= UserLoggedIn.Balance))
                 {
                     Console.Clear();
                     Designs.CenterNewLine("Insufficient funds!\n");
@@ -232,11 +232,11 @@ namespace ConsoleATM
                     break;
                 }
             }
-            user.Balance -= _amount;
-            databaseAccess.UpdateBalance(user, user.Balance);
+            UserLoggedIn.Balance -= _amount;
+            databaseAccess.UpdateBalance(UserLoggedIn, UserLoggedIn.Balance);
             transfer.TransactionStatus = TransactionStatus.Sucessfull;
             transfer.TransactionType = TransactionType.Debit;
-            databaseAccess.CreateTransaction(transfer, user.UserName);
+            databaseAccess.CreateTransaction(transfer, UserLoggedIn.UserName);
             ConfirmTransferDetails();
         }
         /// <summary>

@@ -129,13 +129,13 @@ namespace ConsoleATM
         {
             var withdraw = new TransactionModel { TransactionDescription = "ATM Withdrawal", TransactionAmount = _amount };
 
-            if (_amount <= user.Balance)
+            if (_amount <= UserLoggedIn.Balance)
             {
-                user.Balance -= _amount;
-                databaseAccess.UpdateBalance(user, user.Balance);
+                UserLoggedIn.Balance -= _amount;
+                databaseAccess.UpdateBalance(UserLoggedIn, UserLoggedIn.Balance);
                 withdraw.TransactionStatus = TransactionStatus.Sucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
-                databaseAccess.CreateTransaction(withdraw, user.UserName);
+                databaseAccess.CreateTransaction(withdraw, UserLoggedIn.UserName);
                 UserInterface.TransactionProgress();
                 Designs.CenterNewLine("Please take your cash");
                 Thread.Sleep(6000);

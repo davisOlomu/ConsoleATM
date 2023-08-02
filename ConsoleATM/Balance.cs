@@ -22,12 +22,12 @@ namespace ConsoleATM
         {     
             try
             {
-                string sqlStatement = $"Select * From Customer Where Pin = {user.Pin}";
-                if (databaseAccess.GetUser(user, sqlStatement))
+                string sqlStatement = $"Select * From Customer Where Pin = {UserLoggedIn.Pin}";
+                if (databaseAccess.GetUser(UserLoggedIn, sqlStatement))
                 {
                     Console.WriteLine($"The balances on this account as at {DateTime.Now} are as follows.\n");
-                    Console.WriteLine($"Current Balance\t\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}");
-                    Console.WriteLine($"Available Balance\t:{user.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n\n");
+                    Console.WriteLine($"Current Balance\t\t:{UserLoggedIn.Balance.ToString("C", CultureInfo.CurrentUICulture)}");
+                    Console.WriteLine($"Available Balance\t:{UserLoggedIn.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n\n");
                     Console.WriteLine($"{Designs.AlignText(70, "0> Exit")}");
                     ConsoleKeyInfo option = Console.ReadKey();
 

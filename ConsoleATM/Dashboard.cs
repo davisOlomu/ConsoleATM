@@ -14,7 +14,7 @@ namespace ConsoleATM
             Console.Title = "Console ATM";
             Console.SetWindowSize(100, 20);
             UserInterface.Welcome();
-            Validation.ValidateUserLogin();         
+            Validation.ValidatePin();         
             Transactions.SelectATransaction();
         }
     }
