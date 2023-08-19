@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Spectre.Console;
 
 namespace ConsoleATM
 {
@@ -10,16 +11,16 @@ namespace ConsoleATM
     {
         public static void Welcome()
         {
-            Designs.CenterNewLine("Welcome...");
-            Designs.CenterNewLine("Please insert your card.");
+            AnsiConsole.Write(new Markup("[blue]Welcome...\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]Please insert your card.[/]").Centered());
             Thread.Sleep(6500);
             Console.Clear();
         }
         public static void Transactions()
         {
             Console.Clear();
-            Designs.CenterNewLine("CHOOSE A TRANSACTION");
-            Designs.CenterNewLine("Press Cancel To Exit\n");
+            AnsiConsole.Write(new Markup("[blue]CHOOSE A TRANSACTION[/]\n").Centered());
+            AnsiConsole.Write(new Markup("[blue]Press Cancel To Exit[/]").Centered());
             Console.WriteLine($"{Designs.AlignText(25, "1> Withdrawal\t\t\t\t5> Cash transaction")}");
             Console.WriteLine($"{Designs.AlignText(25, "2> Transfer\t\t\t\t6> Balance")}");
             Console.WriteLine($"{Designs.AlignText(25, "3> Other Services\t\t\t7> Payment")}");
@@ -27,23 +28,26 @@ namespace ConsoleATM
         }
         public static void AccountType()
         {
-            Designs.CenterNewLine("SELECT YOUR ACCOUNT TYPE");
-            Designs.CenterNewLine("Press cancel to terminate transaction\n\n");
-            Console.WriteLine($"{Designs.AlignText(70, "1> Savings")}");
-            Console.WriteLine($"{Designs.AlignText(70, "2> Currents")}");
-            Console.WriteLine($"{Designs.AlignText(70, "3> Cancel")}");
+            AnsiConsole.Write(new Markup("[blue]SELECT YOUR ACCOUNT TYPE[/]\n").Centered());
+            AnsiConsole.Write(new Markup("[blue]Press cancel to terminate transaction\n\n[/]").Centered());
+            var accountype = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+           .AddChoices("Savings")
+           .AddChoices("Current")
+           .AddChoices("Cancel"));
         }
         public static void TransactionProgress()
         {
-            Designs.CenterNewLine("TRANSACTION IN PROGRESS\n");
-            Designs.CenterNewLine("Please Wait");
+            ;
+            AnsiConsole.Write(new Markup("[blue]TRANSACTION IN PROGRESS[/]\n").Centered());
+            AnsiConsole.Write(new Markup("[blue]Please Wait[/]").Centered());
             Thread.Sleep(7000);
             Console.Clear();
         }
         public static void WithdrawalAmount()
         {
-            Designs.CenterNewLine("SELECT AMOUNT");
-            Designs.CenterNewLine("Press Cancel To Terminate Transaction\n\n");
+            AnsiConsole.Write(new Markup("[blue]SELECT AMOUNT\n").Centered());
+            AnsiConsole.Write(new Markup("[blue]Press Cancel To Terminate Transaction\n\n[/]").Centered());
             Console.WriteLine($"{Designs.AlignText(28, "1> N500\t\t\t\t5> N10000")}");
             Console.WriteLine($"{Designs.AlignText(28, "2> N1000\t\t\t\t6> N15000")}");
             Console.WriteLine($"{Designs.AlignText(28, "3> N2000\t\t\t\t7> N20000")}");
@@ -52,42 +56,43 @@ namespace ConsoleATM
         }
         public static void TransactionCompleted()
         {
-            Designs.CenterNewLine("TRANSACTION COMPLETED\n\n");
-            Designs.CenterNewLine("A notification will be sent");
-            Designs.CenterNewLine("to you shortly");
+            AnsiConsole.Write(new Markup("[blue]TRANSACTION COMPLETED\n\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]A notification will be sent[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]to you shortly[/]"));
         }
         public static void NewTransaction()
         {
             Console.Clear();
-            Designs.CenterNewLine("Do you want to perform");
-            Designs.CenterNewLine("another transaction?");
-            Console.WriteLine($"{Designs.AlignText(70, "1> YES\n")}");
-            Console.WriteLine($"{Designs.AlignText(70, "2> NO")}");
-            ConsoleKeyInfo option = Console.ReadKey();
+            AnsiConsole.Write(new Markup("[blue]Do you want to perform\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]another transaction?[/]").Centered());
+            var option = AnsiConsole.Prompt(
+            new SelectionPrompt<string>()
+           .AddChoices("YES")
+           .AddChoices(" NO"));
 
-            if (option.Key == ConsoleKey.NumPad1)
+            if (option.Contains("YES"))
             {
                 Console.Clear();
                 Login.VerifyUser();
                 ConsoleATM.Transactions.SelectATransaction();
             }
-            else if (option.Key == ConsoleKey.NumPad2)
+            else if (option.Contains("NO"))
             {
                 Console.Clear();
-                Designs.CenterNewLine("Please take your card");
+                AnsiConsole.Write(new Markup("[red]Please take your card[/]").Centered());
                 Environment.Exit(0);
             }
             else
             {
                 Console.Clear();
-                Designs.CenterNewLine("Please take your card");
+                AnsiConsole.Write(new Markup("[red]Please take your card[/]").Centered());
                 Environment.Exit(0);
             }
         }
         public static void BeneficiaryBank()
         {
-            Designs.CenterNewLine("SELECT BENEFICIARY BANK");
-            Designs.CenterNewLine("Press cancel to terminate transaction\n");
+            AnsiConsole.Write(new Markup("[blue]SELECT BENEFICIARY BANK\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]Press cancel to terminate transaction\n[/]").Centered());
             Console.WriteLine("1> Access Bank\n");
             Console.WriteLine("3> Diamond Bank\t\t\t\t\t2> (F-M)\n");
             Console.WriteLine("5> Eco Bank\t\t\t\t\t4> (N-S)\n");
@@ -95,15 +100,23 @@ namespace ConsoleATM
         }
         public static void BeneficiaryAccountNumber()
         {
-            Designs.CenterNewLine("ENTER BENEFICIARY ACCOUNT NUMBER");
-            Designs.CenterNewLine("Please press cancel to terminate transaction.\n\n");
-            Console.WriteLine($"{Designs.AlignText(70, "> Enter")}");
+            AnsiConsole.Write(new Markup("[blue]ENTER BENEFICIARY ACCOUNT NUMBER\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]Please press cancel to terminate transaction.\n\n[/]").Centered());
+            var option = AnsiConsole.Prompt(
+           new SelectionPrompt<string>()
+          .AddChoices("Enter")
+          .AddChoices("Cancel"));
         }
         public static void TransferAmount()
         {
-            Designs.CenterNewLine("ENTER THE AMOUNT TO TRANSFER");
-            Designs.CenterNewLine("Please press cancel to terminate transaction.\n\n");
-            Console.WriteLine($"{Designs.AlignText(70, "> Enter")}");
+            AnsiConsole.Write(new Markup("[blue]ENTER THE AMOUNT TO TRANSFER\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]Please press cancel to terminate transaction.\n\n[/]").Centered());
+            Console.Write("Amount: ");
+            Console.WriteLine("\n\n");
+            var option = AnsiConsole.Prompt(
+              new SelectionPrompt<string>()
+             .AddChoices("Enter")
+             .AddChoices("Cancel"));
         }
     }
 }

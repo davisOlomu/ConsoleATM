@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using static ConsoleATM.Login;
 using System.Threading;
 using ConsoleBankDataAccess;
+using Spectre.Console;
 
 namespace ConsoleATM
 {
@@ -25,30 +26,31 @@ namespace ConsoleATM
                 string sqlStatement = $"Select * From Customer Where Pin = {UserLoggedIn.Pin}";
                 if (databaseAccess.GetUser(UserLoggedIn, sqlStatement))
                 {
-                    Console.WriteLine($"The balances on this account as at {DateTime.Now} are as follows.\n");
-                    Console.WriteLine($"Current Balance\t\t:{UserLoggedIn.Balance.ToString("C", CultureInfo.CurrentUICulture)}");
-                    Console.WriteLine($"Available Balance\t:{UserLoggedIn.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n\n");
-                    Console.WriteLine($"{Designs.AlignText(70, "0> Exit")}");
-                    ConsoleKeyInfo option = Console.ReadKey();
-
-                    if (option.Key == ConsoleKey.NumPad0)
+                    AnsiConsole.Write(new Markup($"[blue]The balances on this account as at [/][red]{DateTime.Now}[/][blue] are as follows.\n\n[/]"));
+                    AnsiConsole.Write(new Markup($"[blue]Current Balance:\t\t[/][red]{UserLoggedIn.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n[/]"));
+                    AnsiConsole.Write(new Markup($"[blue]Available Balance:\t[/][red]{UserLoggedIn.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n\n\n[/]"));
+                    var option = AnsiConsole.Prompt(
+                     new SelectionPrompt<string>()
+                   .AddChoices("Cancel")
+                   .AddChoices("Exit"));
+                    if (option.Contains("Exit"))
                     {
                         UserInterface.NewTransaction();
                     }
                     else
                     {
                         Console.Clear();
-                        Designs.CenterNewLine("Wrong Input!");
+                        AnsiConsole.Write(new Markup($"[red]Wrong Input!\n[/]").Centered());
                         Thread.Sleep(3000);
                         Console.Clear();
-                        Designs.CenterNewLine("Please take your card");
+                        AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
                         Environment.Exit(0);
                     }                    
                 }
             }
             catch (SqlException)
             {
-                Console.WriteLine("There is an error while establishing a connection with the SqlServer");
+                AnsiConsole.Write(new Markup($"[red]There is an error while establishing a connection with the SqlServer\n[/]").Centered());
             }           
         }
     }

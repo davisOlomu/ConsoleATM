@@ -1,6 +1,7 @@
 ﻿using System;
 using ConsoleBankDataAccess;
 using System.Data.SqlClient;
+using Spectre.Console;
 
 namespace ConsoleATM
 {
@@ -25,11 +26,14 @@ namespace ConsoleATM
         /// <exception cref="IncorrectPinException"></exception>
         public static void VerifyUser()
         {
-            Designs.CenterNewLine("ENTER FOUR DIGIT PIN-code.");
-            Designs.CenterNewLine("Press <CANCEL> for cancellation");
-            Console.Write("\tPIN **** ");
+            AnsiConsole.Write(new Markup("[blue]ENTER FOUR DIGIT PIN-code.\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]Press <CANCEL> for cancellation[/]").Centered());
+            var pinEntered = AnsiConsole.Prompt(
+            new TextPrompt<string>("[blue]\tEnter PIN: [/]")
+           .PromptStyle("red")
+           .Secret());
 
-            if (!int.TryParse(Console.ReadLine(), out int pin))
+            if (!int.TryParse(pinEntered, out int pin))
             {
                 throw new InvalidPinException("Invalid PIN. Please enter a valid four-digit PIN.");
             }
@@ -48,7 +52,7 @@ namespace ConsoleATM
             }
             catch (SqlException)
             {
-                Console.WriteLine("There is an error while establishing a connection with the SqlServer");
+                AnsiConsole.Write(new Markup("[red]There is an error while establishing a connection with the SqlServer[/]").Centered());
             }
         }
     }
