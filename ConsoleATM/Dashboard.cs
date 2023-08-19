@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Threading;
-using static ConsoleATM.Login;
+using Spectre.Console;
+using System.Collections.Generic;
 
 namespace ConsoleATM
 {
@@ -14,8 +14,13 @@ namespace ConsoleATM
             Console.Title = "Console ATM";
             Console.SetWindowSize(100, 20);
             UserInterface.Welcome();
-            Validation.ValidatePin();         
+            Validation.ValidatePin();
             Transactions.SelectATransaction();
+
+
+
+
+
         }
     }
 }

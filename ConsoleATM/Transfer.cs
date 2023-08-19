@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using ConsoleBankDataAccess;
 using static ConsoleATM.Login;
+using Spectre.Console;
 
 namespace ConsoleATM
 {
@@ -149,7 +150,7 @@ namespace ConsoleATM
             }
             else
             {
-                Designs.CenterNewLine("Wrong Input!");
+                AnsiConsole.Write(new Markup("[red]Wrong Input!\n[/]").Centered());
                 Thread.Sleep(3000);
                 Console.Clear();
                 UserInterface.BeneficiaryBank();
@@ -166,11 +167,11 @@ namespace ConsoleATM
 
             while (!(double.TryParse(accountNumber, out _beneficiaryAccountNumber)))
             {
-                Designs.CenterNewLine("Invalid account number entered\n");
-                Designs.CenterNewLine("Re-Enter Account Number");
+                AnsiConsole.Write(new Markup("[red]Invalid account number entered\n[/]").Centered());
+                AnsiConsole.Write(new Markup("[red]Re-Enter Account Number\n[/]").Centered());
                 Thread.Sleep(2000);
                 Console.Clear();
-                Console.Write("Account Number: ");
+                AnsiConsole.Write(new Markup("[red]Account Number: [/]").Centered());
                 accountNumber = Console.ReadLine();
             }
             Console.Clear();
@@ -196,7 +197,7 @@ namespace ConsoleATM
             else
             {
                 Console.Clear();
-                Designs.CenterNewLine("Please take your card");
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
                 Environment.Exit(0);
             }
             GetAmount();
@@ -206,7 +207,7 @@ namespace ConsoleATM
         /// </summary>
         public static void GetAmount()
         {
-            Console.Write("NGN:");
+            AnsiConsole.Write(new Markup("[blued]NGN:[/]"));
             var transfer = new TransactionModel { TransactionDescription = "ATM Transfer", TransactionAmount = _amount };
 
             while (true)
@@ -214,7 +215,7 @@ namespace ConsoleATM
                 if (!(decimal.TryParse(Console.ReadLine(), out _amount)))
                 {
                     Console.Clear();
-                    Designs.CenterNewLine("Invalid amount format!\n");
+                    AnsiConsole.Write(new Markup("[red]Invalid amount format!\n[/]").Centered());
                     Thread.Sleep(2000);
                     Console.Clear();
                     Console.Write("NGN:");
@@ -222,10 +223,10 @@ namespace ConsoleATM
                 else if (!(_amount <= UserLoggedIn.Balance))
                 {
                     Console.Clear();
-                    Designs.CenterNewLine("Insufficient funds!\n");
+                    AnsiConsole.Write(new Markup("[red]Insufficient funds!\n[/]").Centered());
                     Thread.Sleep(2000);
                     Console.Clear();
-                    Console.Write("NGN:");
+                    AnsiConsole.Write(new Markup("[red]NGN:[/]"));
                 }
                 else
                 {
@@ -247,30 +248,30 @@ namespace ConsoleATM
         public static void ConfirmTransferDetails()
         {
             Console.Clear();
-            Designs.CenterNewLine("Please confirm details of Transfer\n");
-            Console.WriteLine("Account Number: " + _beneficiaryAccountNumber);
-            Console.WriteLine("Amount:NGN " + _amount);
-            Console.WriteLine("Bank: " + _beneficiaryBank);
-            Console.WriteLine($"{Designs.AlignText(70, "1. Proceed")}");
-            Console.WriteLine($"{Designs.AlignText(70, "2. Cancel")}");
-            ConsoleKeyInfo userOption = Console.ReadKey();
-            Console.Clear();
+            AnsiConsole.Write(new Markup("[blue]Please confirm details of Transfer\n[/]").Centered());
+            AnsiConsole.Write(new Markup($"[blue]Account Number:[/]  [red]{_beneficiaryAccountNumber}\n[/]"));
+            AnsiConsole.Write(new Markup($"[blue]Amount: NGN[/][red] {_amount }\n[/]"));
+            AnsiConsole.Write(new Markup($"[blue]Bank:[/][red] {_beneficiaryBank}\n[/]"));
+             var option = AnsiConsole.Prompt(
+              new SelectionPrompt<string>()
+             .AddChoices("Proceed")
+             .AddChoices("Cancel"));
 
-            if (userOption.Key == ConsoleKey.NumPad1)
+            if (option.Contains("Proceed"))
             {
                 UserInterface.TransactionProgress();
                 Console.Clear();
                 UserInterface.TransactionCompleted();
                 UserInterface.NewTransaction();
             }
-            else if (userOption.Key == ConsoleKey.NumPad2)
+            else if (option.Contains("Cancel"))
             {
-                Designs.CenterNewLine("Please take your card.");
+                AnsiConsole.Write(new Markup("[red]Please take your card.\n[/]").Centered());
                 Environment.Exit(0);
             }
             else
             {
-                Designs.CenterNewLine("Please take your card.");
+                AnsiConsole.Write(new Markup("[red]Please take your card.\n[/]").Centered());
                 Environment.Exit(0);
             }
         }

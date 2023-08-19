@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using Spectre.Console;
 
 namespace ConsoleATM
 {
@@ -24,14 +25,14 @@ namespace ConsoleATM
                 catch (InvalidPinException e)
                 {
                     Console.Clear();
-                    Designs.CenterNewLine(e.Message);
+                    AnsiConsole.Write(new Markup($"[red]{e.Message}\n[/]").Centered());
                     Thread.Sleep(2000);
                     Console.Clear();
                 }
                 catch (IncorrectPinException e)
                 {
                     Console.Clear();
-                    Designs.CenterNewLine(e.Message);
+                    AnsiConsole.Write(new Markup($"[red]{e.Message}\n[/]").Centered());
                     Thread.Sleep(2000);
                     Console.Clear();
                 }

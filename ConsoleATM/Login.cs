@@ -52,7 +52,7 @@ namespace ConsoleATM
             }
             catch (SqlException)
             {
-                Console.WriteLine("There is an error while establishing a connection with the SqlServer");
+                AnsiConsole.Write(new Markup("[red]There is an error while establishing a connection with the SqlServer[/]").Centered());
             }
         }
     }

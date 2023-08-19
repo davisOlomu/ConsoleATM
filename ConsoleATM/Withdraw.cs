@@ -2,6 +2,7 @@
 using System.Threading;
 using ConsoleBankDataAccess;
 using static ConsoleATM.Login;
+using Spectre.Console;
 
 namespace ConsoleATM
 {
@@ -33,7 +34,7 @@ namespace ConsoleATM
             else
             {
                 Console.Clear();
-                Designs.CenterNewLine("Please take your card");
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
                 Environment.Exit(0);
             }
             GetAmount();
@@ -80,7 +81,7 @@ namespace ConsoleATM
                     break;
                 case ConsoleKey.NumPad8:
                     Console.Clear();              
-                    Console.Write("\n\nEnter in multiples of 1000\n\n\t\t\t  #:");
+                    AnsiConsole.Write(new Markup("[red]\n\nEnter in multiples of 1000\n\n\t\t\t  N:\n[/]").Centered());
                     decimal customAmount;
 
                     if (decimal.TryParse(Console.ReadLine(), out customAmount))
@@ -94,7 +95,7 @@ namespace ConsoleATM
                         while (!decimal.TryParse(Console.ReadLine(), out customAmount))
                         {
                             Console.Clear();
-                            Console.Write("\n\n\t\tEnter in multiples of 1000\n\n\t\t\t  N: ");
+                            AnsiConsole.Write(new Markup("[red]\n\nEnter in multiples of 1000\n\n\t\t\t  N:\n[/]").Centered());
 
                             if (double.TryParse(Console.ReadLine(), out _))
                             {
@@ -107,15 +108,15 @@ namespace ConsoleATM
                     break;
                 case ConsoleKey.NumPad9:
                     Console.Clear();
-                    Designs.CenterNewLine("Please take your card ");
+                    AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
                     Environment.Exit(0);
                     break;
                 default:
                     Console.Clear();
-                    Designs.CenterNewLine("Wrong Input!");
+                    AnsiConsole.Write(new Markup("[red]Wrong Input!\n[/]").Centered());
                     Thread.Sleep(2000);
                     Console.Clear();
-                    Designs.CenterNewLine("Please take your card ");
+                    AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
                     Environment.Exit(0);
                     break;
             }
@@ -137,7 +138,7 @@ namespace ConsoleATM
                 withdraw.TransactionType = TransactionType.Debit;
                 databaseAccess.CreateTransaction(withdraw, UserLoggedIn.UserName);
                 UserInterface.TransactionProgress();
-                Designs.CenterNewLine("Please take your cash");
+                AnsiConsole.Write(new Markup("[red]Please take your cash\n[/]").Centered());
                 Thread.Sleep(6000);
                 Console.Clear();
                 UserInterface.TransactionCompleted();
@@ -146,7 +147,7 @@ namespace ConsoleATM
             else
             {
                 Console.Clear();
-                Designs.CenterNewLine("Insufficient funds!\n");
+                AnsiConsole.Write(new Markup("[red]Insufficient funds!\n[/]").Centered());
                 withdraw.TransactionStatus = TransactionStatus.Unsucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
                 Thread.Sleep(3000);
