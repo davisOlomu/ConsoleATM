@@ -20,11 +20,24 @@ namespace ConsoleATM
         {
             Console.Clear();
             AnsiConsole.Write(new Markup("[blue]CHOOSE A TRANSACTION[/]\n").Centered());
-            AnsiConsole.Write(new Markup("[blue]Press Cancel To Exit[/]").Centered());
-            Console.WriteLine($"{Designs.AlignText(25, "1> Withdrawal\t\t\t\t5> Cash transaction")}");
-            Console.WriteLine($"{Designs.AlignText(25, "2> Transfer\t\t\t\t6> Balance")}");
-            Console.WriteLine($"{Designs.AlignText(25, "3> Other Services\t\t\t7> Payment")}");
-            Console.WriteLine($"{Designs.AlignText(25, "4> Online Banking\t\t\t8> Cancel")}");
+            AnsiConsole.Write(new Markup("[blue]Press Cancel To Exit[/]\n\n").Centered());
+            string withdraw = "Withdrawal".PadLeft(37);
+            string cash = "Cash transaction".PadLeft(64);
+            string transfer = "Transfer".PadLeft(35);
+            string balance = "Balance".PadLeft(55);
+            string others = "Other Services".PadLeft(41);
+            string payment = "Payment".PadLeft(55);
+            string online = "Online Banking".PadLeft(41);
+            string cancel = "Cancel".PadLeft(54);
+            var menuItem = AnsiConsole.Prompt(new SelectionPrompt<string>()
+           .AddChoices(withdraw)
+           .AddChoices(cash)
+           .AddChoices(transfer)
+           .AddChoices(balance)
+           .AddChoices(others)
+           .AddChoices(payment)
+           .AddChoices(online)
+           .AddChoices(cancel));
         }
         public static void AccountType()
         {
@@ -38,7 +51,6 @@ namespace ConsoleATM
         }
         public static void TransactionProgress()
         {
-            ;
             AnsiConsole.Write(new Markup("[blue]TRANSACTION IN PROGRESS[/]\n").Centered());
             AnsiConsole.Write(new Markup("[blue]Please Wait[/]").Centered());
             Thread.Sleep(7000);
@@ -46,13 +58,27 @@ namespace ConsoleATM
         }
         public static void WithdrawalAmount()
         {
-            AnsiConsole.Write(new Markup("[blue]SELECT AMOUNT\n").Centered());
+            AnsiConsole.Write(new Markup("[blue]SELECT AMOUNT[/]\n").Centered());
             AnsiConsole.Write(new Markup("[blue]Press Cancel To Terminate Transaction\n\n[/]").Centered());
-            Console.WriteLine($"{Designs.AlignText(28, "1> N500\t\t\t\t5> N10000")}");
-            Console.WriteLine($"{Designs.AlignText(28, "2> N1000\t\t\t\t6> N15000")}");
-            Console.WriteLine($"{Designs.AlignText(28, "3> N2000\t\t\t\t7> N20000")}");
-            Console.WriteLine($"{Designs.AlignText(28, "4> N5000\t\t\t\t8> OTHER ")}");
-            Console.WriteLine($"{Designs.AlignText(28, "9> Cancel")}");
+            string fiveHundred = "N500".PadLeft(37);
+            string ten = "N10000".PadLeft(63);
+            string one = "N1000".PadLeft(38);
+            string fifteen = "N15000".PadLeft(63);
+            string two = "N2000".PadLeft(38);
+            string twenty = "N20000".PadLeft(63);
+            string fiveThousand = "N5000".PadLeft(38);
+            string other = "OTHER".PadLeft(62);
+            string cancel = "Cancel".PadLeft(39);
+            var menuItem = AnsiConsole.Prompt(new SelectionPrompt<string>()
+           .AddChoices(fiveHundred)
+           .AddChoices(ten)
+           .AddChoices(one)
+           .AddChoices(fifteen)
+           .AddChoices(two)
+           .AddChoices(twenty)
+           .AddChoices(fiveThousand)
+           .AddChoices(other)
+           .AddChoices(cancel));
         }
         public static void TransactionCompleted()
         {
@@ -93,10 +119,23 @@ namespace ConsoleATM
         {
             AnsiConsole.Write(new Markup("[blue]SELECT BENEFICIARY BANK\n[/]").Centered());
             AnsiConsole.Write(new Markup("[blue]Press cancel to terminate transaction\n[/]").Centered());
-            Console.WriteLine("1> Access Bank\n");
-            Console.WriteLine("3> Diamond Bank\t\t\t\t\t2> (F-M)\n");
-            Console.WriteLine("5> Eco Bank\t\t\t\t\t4> (N-S)\n");
-            Console.WriteLine("7> Heritage Bank\t\t\t\t6> (T-Z)");
+            string access = "Access Bank".PadLeft(37);
+            string diamond = "Diamond Bank".PadLeft(38);
+            string fm = "(F-M)".PadLeft(50);
+            string eco = "Eco Bank".PadLeft(34);
+            string ns = "(N-S)".PadLeft(50);
+            string heritage = "Heritage Bank".PadLeft(39);
+            string tz = "(T-Z)".PadLeft(50);
+            string cancel = "Cancel".PadLeft(32);
+            var menuItem = AnsiConsole.Prompt(new SelectionPrompt<string>()
+           .AddChoices(access + "\n")
+           .AddChoices(diamond)
+           .AddChoices(fm)
+           .AddChoices(eco)
+           .AddChoices(ns)
+           .AddChoices(heritage)
+           .AddChoices(tz)
+           .AddChoices(cancel));
         }
         public static void BeneficiaryAccountNumber()
         {

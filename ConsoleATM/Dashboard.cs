@@ -16,11 +16,6 @@ namespace ConsoleATM
             UserInterface.Welcome();
             Validation.ValidatePin();
             Transactions.SelectATransaction();
-
-
-
-
-
         }
     }
 }
