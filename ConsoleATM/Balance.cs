@@ -8,7 +8,7 @@ using Spectre.Console;
 
 namespace ConsoleATM
 {
- public static  class Balance
+    public static class Balance
     {
         /// <summary>
         /// 
@@ -20,7 +20,7 @@ namespace ConsoleATM
         /// at a specific date and time.
         /// </summary>
         public static void ShowBalance()
-        {     
+        {
             try
             {
                 string sqlStatement = $"Select * From Customer Where Pin = {UserLoggedIn.Pin}";
@@ -45,13 +45,13 @@ namespace ConsoleATM
                         Console.Clear();
                         AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
                         Environment.Exit(0);
-                    }                    
+                    }
                 }
             }
             catch (SqlException)
             {
                 AnsiConsole.Write(new Markup($"[red]There is an error while establishing a connection with the SqlServer\n[/]").Centered());
-            }           
+            }
         }
     }
 }
