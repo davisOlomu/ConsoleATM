@@ -19,16 +19,16 @@ namespace ConsoleATM
         public static void Transactions()
         {
             Console.Clear();
-            AnsiConsole.Write(new Markup("[blue]CHOOSE A TRANSACTION[/]\n").Centered());
+            AnsiConsole.Write(new Markup("[blue]\n\nCHOOSE A TRANSACTION[/]\n").Centered());
             AnsiConsole.Write(new Markup("[blue]Press Cancel To Exit[/]\n\n").Centered());
-            string withdraw = "Withdrawal".PadLeft(37);
-            string cash = "Cash transaction".PadLeft(64);
-            string transfer = "Transfer".PadLeft(35);
-            string balance = "Balance".PadLeft(55);
-            string others = "Other Services".PadLeft(41);
-            string payment = "Payment".PadLeft(55);
-            string online = "Online Banking".PadLeft(41);
-            string cancel = "Cancel".PadLeft(54);
+            string withdraw = "Withdrawal".PadLeft(42);
+            string cash = "Cash transaction".PadLeft(69);
+            string transfer = "Transfer".PadLeft(40);
+            string balance = "Balance".PadLeft(60);
+            string others = "Other Services".PadLeft(46);
+            string payment = "Payment".PadLeft(60);
+            string online = "Online Banking".PadLeft(46);
+            string cancel = "Cancel".PadLeft(59);
             var menuItem = AnsiConsole.Prompt(new SelectionPrompt<string>()
            .AddChoices(withdraw)
            .AddChoices(cash)
@@ -58,7 +58,7 @@ namespace ConsoleATM
         }
         public static void WithdrawalAmount()
         {
-            AnsiConsole.Write(new Markup("[blue]SELECT AMOUNT[/]\n").Centered());
+            AnsiConsole.Write(new Markup("[blue]\n\nSELECT AMOUNT[/]\n").Centered());
             AnsiConsole.Write(new Markup("[blue]Press Cancel To Terminate Transaction\n\n[/]").Centered());
             string fiveHundred = "N500".PadLeft(37);
             string ten = "N10000".PadLeft(63);
@@ -94,7 +94,7 @@ namespace ConsoleATM
             var option = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
            .AddChoices("YES")
-           .AddChoices(" NO"));
+           .AddChoices("NO"));
 
             if (option.Contains("YES"))
             {
@@ -117,16 +117,16 @@ namespace ConsoleATM
         }
         public static void BeneficiaryBank()
         {
-            AnsiConsole.Write(new Markup("[blue]SELECT BENEFICIARY BANK\n[/]").Centered());
-            AnsiConsole.Write(new Markup("[blue]Press cancel to terminate transaction\n[/]").Centered());
-            string access = "Access Bank".PadLeft(37);
-            string diamond = "Diamond Bank".PadLeft(38);
-            string fm = "(F-M)".PadLeft(50);
-            string eco = "Eco Bank".PadLeft(34);
-            string ns = "(N-S)".PadLeft(50);
-            string heritage = "Heritage Bank".PadLeft(39);
-            string tz = "(T-Z)".PadLeft(50);
-            string cancel = "Cancel".PadLeft(32);
+            AnsiConsole.Write(new Markup("[blue]\n\nSELECT BENEFICIARY BANK\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[blue]Press cancel to terminate transaction\n\n[/]").Centered());
+            string access = "Access Bank".PadLeft(47);
+            string diamond = "Diamond Bank".PadLeft(48);
+            string fm = "(F-M)".PadLeft(60);
+            string eco = "Eco Bank".PadLeft(44);
+            string ns = "(N-S)".PadLeft(60);
+            string heritage = "Heritage Bank".PadLeft(49);
+            string tz = "(T-Z)".PadLeft(60);
+            string cancel = "Cancel".PadLeft(42);
             var menuItem = AnsiConsole.Prompt(new SelectionPrompt<string>()
            .AddChoices(access + "\n")
            .AddChoices(diamond)
