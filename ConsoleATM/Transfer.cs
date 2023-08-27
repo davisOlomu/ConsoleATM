@@ -183,23 +183,7 @@ namespace ConsoleATM
         /// </summary>
         public static void GetBeneficiaryAccountType()
         {
-            ConsoleKeyInfo userOption = Console.ReadKey();
-            Console.Clear();
-
-            if (userOption.Key == ConsoleKey.NumPad1)
-            {
-                UserInterface.TransferAmount();
-            }
-            else if (userOption.Key == ConsoleKey.NumPad2)
-            {
-                UserInterface.TransferAmount();
-            }
-            else
-            {
-                Console.Clear();
-                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
-                Environment.Exit(0);
-            }
+            UserInterface.AccountType();
             GetAmount();
         }
         /// <summary>

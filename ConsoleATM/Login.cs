@@ -1,7 +1,6 @@
-﻿using System;
-using ConsoleBankDataAccess;
-using System.Data.SqlClient;
+﻿using ConsoleBankDataAccess;
 using Spectre.Console;
+using System.Data.SqlClient;
 
 namespace ConsoleATM
 {
