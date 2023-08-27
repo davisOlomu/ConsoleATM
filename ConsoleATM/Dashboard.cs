@@ -15,7 +15,7 @@ namespace ConsoleATM
             Console.SetWindowSize(100, 20);
             UserInterface.Welcome();
             Validation.ValidatePin();
-            Transactions.SelectATransaction();
+            UserInterface.Transactions();
         }
     }
 }

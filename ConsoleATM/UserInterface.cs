@@ -38,7 +38,74 @@ namespace ConsoleATM
            .AddChoices(payment)
            .AddChoices(online)
            .AddChoices(cancel));
+
+            if (menuItem.Contains("Withdrawal"))
+            {
+                Console.Clear();
+                Withdraw.GetAccountType();
+            }
+            else if (menuItem.Contains("Cash"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[blue]Under Construction!\n[/]").Centered());
+                Thread.Sleep(3000);
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
+            else if (menuItem.Contains("Balance"))
+            {
+                Console.Clear();
+                Balance.ShowBalance();
+            }
+            else if (menuItem.Contains("Transfer"))
+            {
+                Console.Clear();
+                Transfer.GetBeneficiaryBank();
+            }
+            else if (menuItem.Contains("Other"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Under Construction!\n[/]").Centered());
+                Thread.Sleep(3000);
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                AnsiConsole.WriteLine("\n\n");
+            }
+            else if (menuItem.Contains("Payment"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Under Construction!\n[/]").Centered());
+                Thread.Sleep(3000);
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
+            else if (menuItem.Contains("Online"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Under Construction!\n[/]").Centered());
+                Thread.Sleep(3000);
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
+            else if (menuItem.Contains("Cancel"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+                Console.Clear();
+            }
+            else
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+                Console.Clear();
+            }
         }
+
         public static void AccountType()
         {
             AnsiConsole.Write(new Markup("[blue]SELECT YOUR ACCOUNT TYPE[/]\n").Centered());
@@ -48,15 +115,40 @@ namespace ConsoleATM
            .AddChoices("Savings")
            .AddChoices("Current")
            .AddChoices("Cancel"));
+
+            if (accountype.Contains("Savings"))
+            {
+                Console.Clear();
+                WithdrawalAmount();
+            }
+            else if (accountype.Contains("Current"))
+            {
+                Console.Clear();
+                WithdrawalAmount();
+            }
+            else if (accountype.Contains("Cancel"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
         }
+
         public static void TransactionProgress()
         {
-            AnsiConsole.Write(new Markup("[blue]TRANSACTION IN PROGRESS[/]\n").Centered());
-            AnsiConsole.Write(new Markup("[blue]Please Wait[/]").Centered());
+            AnsiConsole.Write(new Markup("[red]TRANSACTION IN PROGRESS[/]\n").Centered());
+            AnsiConsole.Write(new Markup("[red]Please Wait[/]").Centered());
             Thread.Sleep(7000);
             Console.Clear();
         }
-        public static void WithdrawalAmount()
+
+        public static decimal WithdrawalAmount()
         {
             AnsiConsole.Write(new Markup("[blue]\n\nSELECT AMOUNT[/]\n").Centered());
             AnsiConsole.Write(new Markup("[blue]Press Cancel To Terminate Transaction\n\n[/]").Centered());
@@ -79,18 +171,106 @@ namespace ConsoleATM
            .AddChoices(fiveThousand)
            .AddChoices(other)
            .AddChoices(cancel));
+
+            decimal amount = 0;
+            if (menuItem.Contains("N500"))
+            {
+                Console.Clear();
+                amount = 500;
+                UserInterface.TransactionProgress();
+            }
+            else if (menuItem.Contains("N10000"))
+            {
+                Console.Clear();
+                amount = 10000;
+                UserInterface.TransactionProgress();
+            }
+            else if (menuItem.Contains("N1000"))
+            {
+                Console.Clear();
+                amount = 1000;
+                UserInterface.TransactionProgress();
+            }
+            else if (menuItem.Contains("N15000"))
+            {
+                Console.Clear();
+                amount = 15000;
+                UserInterface.TransactionProgress();
+            }
+            else if (menuItem.Contains("N2000"))
+            {
+
+                amount = 2000;
+                UserInterface.TransactionProgress();
+            }
+            else if (menuItem.Contains("N5000"))
+            {
+                amount = 5000;
+                UserInterface.TransactionProgress();
+            }
+            else if (menuItem.Contains("N20000"))
+            {
+                amount = 20000;
+                UserInterface.TransactionProgress();
+            }
+            else if (menuItem.Contains("OTHER"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]\n\nEnter in multiples of 1000\n\n\t\t\t  N:\n[/]").Centered());
+                decimal customAmount;
+
+                if (decimal.TryParse(Console.ReadLine(), out customAmount))
+                {
+                    Console.Clear();
+                    amount = customAmount;
+                    UserInterface.TransactionProgress();
+                }
+                else
+                {
+                    while (!decimal.TryParse(Console.ReadLine(), out customAmount))
+                    {
+                        Console.Clear();
+                        AnsiConsole.Write(new Markup("[red]\n\nEnter in multiples of 1000\n\n\t\t\t  N:\n[/]").Centered());
+
+                        if (double.TryParse(Console.ReadLine(), out _))
+                        {
+                            Console.Clear();
+                            amount = customAmount;
+                            UserInterface.TransactionProgress();
+                        }
+                    }
+                }
+            }
+            else if (menuItem.Contains("Cancel"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Wrong Input!\n[/]").Centered());
+                Thread.Sleep(2000);
+                Console.Clear();
+                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
+            return amount;
         }
+
         public static void TransactionCompleted()
         {
             AnsiConsole.Write(new Markup("[blue]TRANSACTION COMPLETED\n\n[/]").Centered());
             AnsiConsole.Write(new Markup("[blue]A notification will be sent[/]").Centered());
             AnsiConsole.Write(new Markup("[blue]to you shortly[/]"));
         }
+
         public static void NewTransaction()
         {
             Console.Clear();
-            AnsiConsole.Write(new Markup("[blue]Do you want to perform\n[/]").Centered());
-            AnsiConsole.Write(new Markup("[blue]another transaction?[/]").Centered());
+            AnsiConsole.Write(new Markup("[red]Do you want to perform\n[/]").Centered());
+            AnsiConsole.Write(new Markup("[red]another transaction?[/]").Centered());
             var option = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
            .AddChoices("YES")
@@ -100,7 +280,7 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 Login.VerifyUser();
-                ConsoleATM.Transactions.SelectATransaction();
+                Transactions();
             }
             else if (option.Contains("NO"))
             {
@@ -115,6 +295,7 @@ namespace ConsoleATM
                 Environment.Exit(0);
             }
         }
+
         public static void BeneficiaryBank()
         {
             AnsiConsole.Write(new Markup("[blue]\n\nSELECT BENEFICIARY BANK\n[/]").Centered());
@@ -136,6 +317,9 @@ namespace ConsoleATM
            .AddChoices(heritage)
            .AddChoices(tz)
            .AddChoices(cancel));
+
+
+        
         }
         public static void BeneficiaryAccountNumber()
         {
@@ -146,6 +330,7 @@ namespace ConsoleATM
           .AddChoices("Enter")
           .AddChoices("Cancel"));
         }
+
         public static void TransferAmount()
         {
             AnsiConsole.Write(new Markup("[blue]ENTER THE AMOUNT TO TRANSFER\n[/]").Centered());
