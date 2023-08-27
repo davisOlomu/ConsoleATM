@@ -33,7 +33,8 @@ namespace ConsoleATM
         /// </summary>
         public static void GetAmount()
         {
-            _amount = UserInterface.WithdrawalAmount();             
+            _amount = UserInterface.WithdrawalAmount();
+            UserInterface.TransactionProgress();
             GetStatus();
         }
 
@@ -51,9 +52,8 @@ namespace ConsoleATM
                 withdraw.TransactionStatus = TransactionStatus.Sucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
                 databaseAccess.CreateTransaction(withdraw, UserLoggedIn.UserName);
-                UserInterface.TransactionProgress();
                 AnsiConsole.Write(new Markup("[red]Please take your cash\n[/]").Centered());
-                Thread.Sleep(6000);
+                Thread.Sleep(5000);
                 Console.Clear();
                 UserInterface.TransactionCompleted();
                 UserInterface.NewTransaction();
@@ -64,9 +64,8 @@ namespace ConsoleATM
                 AnsiConsole.Write(new Markup("[red]Insufficient funds!\n[/]").Centered());
                 withdraw.TransactionStatus = TransactionStatus.Unsucessfull;
                 withdraw.TransactionType = TransactionType.Debit;
-                Thread.Sleep(3000);
+                Thread.Sleep(5000);
                 Console.Clear();
-                UserInterface.WithdrawalAmount();
                 GetAmount();
             }
         }

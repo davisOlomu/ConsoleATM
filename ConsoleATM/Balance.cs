@@ -33,15 +33,12 @@ namespace ConsoleATM
                      new SelectionPrompt<string>()
                    .AddChoices("Cancel")
                    .AddChoices("Exit"));
-                    if (option.Contains("Exit"))
+                    if (option.Contains("Cancel"))
                     {
-                        UserInterface.NewTransaction();
+                        UserInterface.Transactions();
                     }
-                    else
+                    else if (option.Contains("Exit"))
                     {
-                        Console.Clear();
-                        AnsiConsole.Write(new Markup($"[red]Wrong Input!\n[/]").Centered());
-                        Thread.Sleep(3000);
                         Console.Clear();
                         AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
                         Environment.Exit(0);

@@ -116,27 +116,30 @@ namespace ConsoleATM
            .AddChoices("Current")
            .AddChoices("Cancel"));
 
-            if (accountype.Contains("Savings"))
+            while (true)
             {
-                Console.Clear();
-                WithdrawalAmount();
-            }
-            else if (accountype.Contains("Current"))
-            {
-                Console.Clear();
-                WithdrawalAmount();
-            }
-            else if (accountype.Contains("Cancel"))
-            {
-                Console.Clear();
-                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
-                Environment.Exit(0);
-            }
-            else
-            {
-                Console.Clear();
-                AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
-                Environment.Exit(0);
+                if (accountype.Contains("Savings"))
+                {
+                    Console.Clear();
+                    break;
+                }
+                else if (accountype.Contains("Current"))
+                {
+                    Console.Clear();
+                    break;
+                }
+                else if (accountype.Contains("Cancel"))
+                {
+                    Console.Clear();
+                    AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                    Environment.Exit(0);
+                }
+                else
+                {
+                    Console.Clear();
+                    AnsiConsole.Write(new Markup("[red]Please take your card\n[/]").Centered());
+                    Environment.Exit(0);
+                }
             }
         }
 
@@ -153,21 +156,21 @@ namespace ConsoleATM
             AnsiConsole.Write(new Markup("[blue]\n\nSELECT AMOUNT[/]\n").Centered());
             AnsiConsole.Write(new Markup("[blue]Press Cancel To Terminate Transaction\n\n[/]").Centered());
             string fiveHundred = "N500".PadLeft(37);
-            string ten = "N10000".PadLeft(63);
-            string one = "N1000".PadLeft(38);
-            string fifteen = "N15000".PadLeft(63);
-            string two = "N2000".PadLeft(38);
-            string twenty = "N20000".PadLeft(63);
+            string tenThousand = "N10000".PadLeft(63);
+            string oneThousand = "N1000".PadLeft(38);
+            string fifteenThousand = "N15000".PadLeft(63);
+            string twoThousand = "N2000".PadLeft(38);
+            string twentyThousand = "N20000".PadLeft(63);
             string fiveThousand = "N5000".PadLeft(38);
             string other = "OTHER".PadLeft(62);
             string cancel = "Cancel".PadLeft(39);
             var menuItem = AnsiConsole.Prompt(new SelectionPrompt<string>()
            .AddChoices(fiveHundred)
-           .AddChoices(ten)
-           .AddChoices(one)
-           .AddChoices(fifteen)
-           .AddChoices(two)
-           .AddChoices(twenty)
+           .AddChoices(tenThousand)
+           .AddChoices(oneThousand)
+           .AddChoices(fifteenThousand)
+           .AddChoices(twoThousand)
+           .AddChoices(twentyThousand)
            .AddChoices(fiveThousand)
            .AddChoices(other)
            .AddChoices(cancel));
@@ -177,53 +180,50 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 amount = 500;
-                UserInterface.TransactionProgress();
             }
             else if (menuItem.Contains("N10000"))
             {
                 Console.Clear();
                 amount = 10000;
-                UserInterface.TransactionProgress();
             }
             else if (menuItem.Contains("N1000"))
             {
                 Console.Clear();
                 amount = 1000;
-                UserInterface.TransactionProgress();
             }
             else if (menuItem.Contains("N15000"))
             {
                 Console.Clear();
                 amount = 15000;
-                UserInterface.TransactionProgress();
             }
             else if (menuItem.Contains("N2000"))
             {
-
+                Console.Clear();
                 amount = 2000;
-                UserInterface.TransactionProgress();
             }
             else if (menuItem.Contains("N5000"))
             {
+                Console.Clear();
                 amount = 5000;
-                UserInterface.TransactionProgress();
             }
             else if (menuItem.Contains("N20000"))
             {
+                Console.Clear();
                 amount = 20000;
-                UserInterface.TransactionProgress();
             }
             else if (menuItem.Contains("OTHER"))
             {
                 Console.Clear();
-                AnsiConsole.Write(new Markup("[red]\n\nEnter in multiples of 1000\n\n\t\t\t  N:\n[/]").Centered());
+                AnsiConsole.Write(new Markup("[blue]\n\nEnter in multiples of 1000\n\n[/]").Centered());
+         
+                AnsiConsole.Write(new Markup("[red]N[/]").Centered());
+                Console.SetCursorPosition(51, 5);
                 decimal customAmount;
 
                 if (decimal.TryParse(Console.ReadLine(), out customAmount))
                 {
                     Console.Clear();
                     amount = customAmount;
-                    UserInterface.TransactionProgress();
                 }
                 else
                 {
@@ -236,7 +236,6 @@ namespace ConsoleATM
                         {
                             Console.Clear();
                             amount = customAmount;
-                            UserInterface.TransactionProgress();
                         }
                     }
                 }
@@ -319,7 +318,7 @@ namespace ConsoleATM
            .AddChoices(cancel));
 
 
-        
+
         }
         public static void BeneficiaryAccountNumber()
         {
