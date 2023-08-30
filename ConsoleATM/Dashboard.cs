@@ -1,6 +1,4 @@
 ﻿using System;
-using Spectre.Console;
-using System.Collections.Generic;
 
 namespace ConsoleATM
 {

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Spectre.Console;
+using System;
 using System.Threading;
-using Spectre.Console;
 
 namespace ConsoleATM
 {
@@ -215,7 +215,7 @@ namespace ConsoleATM
             {
                 Console.Clear();
                 AnsiConsole.Write(new Markup("[blue]\n\nEnter in multiples of 1000\n\n[/]").Centered());
-         
+
                 AnsiConsole.Write(new Markup("[red]N[/]").Centered());
                 Console.SetCursorPosition(51, 5);
                 decimal customAmount;
@@ -295,7 +295,7 @@ namespace ConsoleATM
             }
         }
 
-        public static void BeneficiaryBank()
+        public static string BeneficiaryBank()
         {
             AnsiConsole.Write(new Markup("[blue]\n\nSELECT BENEFICIARY BANK\n[/]").Centered());
             AnsiConsole.Write(new Markup("[blue]Press cancel to terminate transaction\n\n[/]").Centered());
@@ -316,18 +316,156 @@ namespace ConsoleATM
            .AddChoices(heritage)
            .AddChoices(tz)
            .AddChoices(cancel));
+            Console.Clear();
 
+            string beneficiaryBank = "";
 
+            if (menuItem.Contains("Access"))
+            {
+                beneficiaryBank = "Access Bank";
+            }
+            else if (menuItem.Contains("Diamond"))
+            {
+                beneficiaryBank = "Diamond Bank";
+            }
+            else if (menuItem.Contains("Eco"))
+            {
+                beneficiaryBank = "Eco Bank";
+            }
+            else if (menuItem.Contains("Heritage"))
+            {
+                beneficiaryBank = "Heritage Bank";
+            }
+            else if (menuItem.Contains("(F-M)"))
+            {
+                Console.Clear();
+                var bank = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                 .AddChoices("Fidelity Bank")
+                 .AddChoices("First Bank")
+                 .AddChoices("GT Bank"));
+                Console.Clear();
 
+                if (bank.Contains("Fidelity"))
+                {
+                    beneficiaryBank = "Fidelity Bank";
+                }
+                else if (bank.Contains("First"))
+                {
+                    beneficiaryBank = "First Bank";
+                }
+                else if (bank.Contains("GT"))
+                {
+                    beneficiaryBank = "GT Bank";
+                }
+            }
+
+            else if (menuItem.Contains("(N-S)"))
+            {
+                Console.Clear();
+                var bank = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                .AddChoices("Polaris Bank")
+                .AddChoices("Stanbic IBTC")
+                .AddChoices("Standard Chartered")
+                .AddChoices("Sterling Bank"));
+                Console.Clear();
+
+                if (bank.Contains("Polaris"))
+                {
+                    beneficiaryBank = "Polaris Bank";
+                }
+                else if (bank.Contains("Stanbic"))
+                {
+                    beneficiaryBank = "Stanbic IBTC";
+                }
+                else if (bank.Contains("Standard"))
+                {
+                    beneficiaryBank = "Standard Chartered";
+                }
+                else if (bank.Contains("Sterling"))
+                {
+                    beneficiaryBank = "Sterling Bank";
+                }
+            }
+
+            else if (menuItem.Contains("(T-Z)"))
+            {
+                Console.Clear();
+                var bank = AnsiConsole.Prompt(new SelectionPrompt<string>()
+                 .AddChoices("Taj Bank")
+                 .AddChoices("Unity Bank")
+                 .AddChoices("Union Bank")
+                 .AddChoices("Wema Bank")
+                 .AddChoices("GTB")
+                 .AddChoices("Zenith Bank"));
+                Console.Clear();
+
+                if (bank.Contains("Taj"))
+                {
+                    beneficiaryBank = "Taj Bank";
+                }
+                else if (bank.Contains("Unity"))
+                {
+                    beneficiaryBank = "Unity Bank";
+                }
+                else if (bank.Contains("Union"))
+                {
+                    beneficiaryBank = "Union Bank";
+                }
+                else if (bank.Contains("Wema"))
+                {
+                    beneficiaryBank = "Wema Bank";
+                }
+                else if (bank.Contains("GTB"))
+                {
+                    beneficiaryBank = "GTB";
+                }
+                else if (bank.Contains("Zenith"))
+                {
+                    beneficiaryBank = "Zenith Bank";
+                }
+            }
+            else
+            {
+                AnsiConsole.Write(new Markup("[red]Wrong Input!\n[/]").Centered());
+                Thread.Sleep(3000);
+                Console.Clear();
+                BeneficiaryBank();
+            }
+            return beneficiaryBank;
         }
-        public static void BeneficiaryAccountNumber()
+        public static double BeneficiaryAccountNumber()
         {
             AnsiConsole.Write(new Markup("[blue]ENTER BENEFICIARY ACCOUNT NUMBER\n[/]").Centered());
             AnsiConsole.Write(new Markup("[blue]Please press cancel to terminate transaction.\n\n[/]").Centered());
             var option = AnsiConsole.Prompt(
            new SelectionPrompt<string>()
-          .AddChoices("Enter")
-          .AddChoices("Cancel"));
+           .AddChoices("Enter")
+           .AddChoices("Cancel"));
+            double beneficiaryAccountNumber = 0;
+
+            if (option.Contains("Enter"))
+            {
+                string accountNumber = Console.ReadLine();
+                Console.Clear();
+
+                while (!(double.TryParse(accountNumber, out beneficiaryAccountNumber)))
+                {
+                    AnsiConsole.Write(new Markup("[red]Invalid account number entered\n[/]").Centered());
+                    AnsiConsole.Write(new Markup("[red]Re-Enter Account Number\n[/]").Centered());
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    AnsiConsole.Write(new Markup("[red]Account Number: [/]").Centered());
+                    accountNumber = Console.ReadLine();
+                }
+                Console.Clear();
+            }
+            else if (option.Contains("Cancel"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
+            return beneficiaryAccountNumber;
         }
 
         public static void TransferAmount()
@@ -340,6 +478,17 @@ namespace ConsoleATM
               new SelectionPrompt<string>()
              .AddChoices("Enter")
              .AddChoices("Cancel"));
+
+            if (option.Contains("Enter"))
+            {
+             
+            }
+            else if (option.Contains("Cancel"))
+            {
+                Console.Clear();
+                AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
+                Environment.Exit(0);
+            }
         }
     }
 }

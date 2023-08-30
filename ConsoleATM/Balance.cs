@@ -1,10 +1,9 @@
-﻿using System;
-using System.Globalization;
-using System.Data.SqlClient;
-using static ConsoleATM.Login;
-using System.Threading;
-using ConsoleBankDataAccess;
+﻿using ConsoleBankDataAccess;
 using Spectre.Console;
+using System;
+using System.Data.SqlClient;
+using System.Globalization;
+using static ConsoleATM.Login;
 
 namespace ConsoleATM
 {
@@ -31,9 +30,10 @@ namespace ConsoleATM
                     AnsiConsole.Write(new Markup($"[blue]Available Balance:\t[/][red]{UserLoggedIn.Balance.ToString("C", CultureInfo.CurrentUICulture)}\n\n\n[/]"));
                     var option = AnsiConsole.Prompt(
                      new SelectionPrompt<string>()
-                   .AddChoices("Cancel")
+                   .AddChoices("Menu")
                    .AddChoices("Exit"));
-                    if (option.Contains("Cancel"))
+
+                    if (option.Contains("Menu"))
                     {
                         UserInterface.Transactions();
                     }
