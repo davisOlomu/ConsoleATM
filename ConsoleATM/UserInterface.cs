@@ -339,10 +339,14 @@ namespace ConsoleATM
             else if (menuItem.Contains("(F-M)"))
             {
                 Console.Clear();
+                string cancl = "Cancel".PadLeft(33);
+                string ext = "Exit".PadLeft(31);
                 var bank = AnsiConsole.Prompt(new SelectionPrompt<string>()
                  .AddChoices("Fidelity Bank")
                  .AddChoices("First Bank")
-                 .AddChoices("GT Bank"));
+                 .AddChoices("GT Bank")
+                 .AddChoices(cancl)
+                 .AddChoices(ext));
                 Console.Clear();
 
                 if (bank.Contains("Fidelity"))
@@ -357,16 +361,31 @@ namespace ConsoleATM
                 {
                     beneficiaryBank = "GT Bank";
                 }
+                else if (bank.Contains(cancl))
+                {
+                    Console.Clear();
+                    Transactions();
+                }
+                else if (bank.Contains(ext))
+                {
+                    Console.Clear();
+                    AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
+                    Environment.Exit(0);
+                }
             }
 
             else if (menuItem.Contains("(N-S)"))
             {
                 Console.Clear();
+                string cancl = "Cancel".PadLeft(33);
+                string ext = "Exit".PadLeft(31);
                 var bank = AnsiConsole.Prompt(new SelectionPrompt<string>()
                 .AddChoices("Polaris Bank")
                 .AddChoices("Stanbic IBTC")
                 .AddChoices("Standard Chartered")
-                .AddChoices("Sterling Bank"));
+                .AddChoices("Sterling Bank")
+                .AddChoices(cancl)
+                .AddChoices(ext));
                 Console.Clear();
 
                 if (bank.Contains("Polaris"))
@@ -385,18 +404,33 @@ namespace ConsoleATM
                 {
                     beneficiaryBank = "Sterling Bank";
                 }
+                else if (bank.Contains(cancl))
+                {
+                    Console.Clear();
+                    Transactions();
+                }
+                else if (bank.Contains(ext))
+                {
+                    Console.Clear();
+                    AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
+                    Environment.Exit(0);
+                }
             }
 
             else if (menuItem.Contains("(T-Z)"))
             {
                 Console.Clear();
+                string cancl = "Cancel".PadLeft(33);
+                string ext = "Exit".PadLeft(31);
                 var bank = AnsiConsole.Prompt(new SelectionPrompt<string>()
                  .AddChoices("Taj Bank")
                  .AddChoices("Unity Bank")
                  .AddChoices("Union Bank")
                  .AddChoices("Wema Bank")
                  .AddChoices("GTB")
-                 .AddChoices("Zenith Bank"));
+                 .AddChoices("Zenith Bank")
+                 .AddChoices(cancl)
+                 .AddChoices(ext));
                 Console.Clear();
 
                 if (bank.Contains("Taj"))
@@ -422,6 +456,17 @@ namespace ConsoleATM
                 else if (bank.Contains("Zenith"))
                 {
                     beneficiaryBank = "Zenith Bank";
+                }
+                else if (bank.Contains(cancl))
+                {
+                    Console.Clear();
+                    Transactions();
+                }
+                else if (bank.Contains(ext))
+                {
+                    Console.Clear();
+                    AnsiConsole.Write(new Markup($"[red]Please take your card\n[/]").Centered());
+                    Environment.Exit(0);
                 }
             }
             else
